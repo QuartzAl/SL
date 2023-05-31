@@ -1,0 +1,45 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model item {
+  itemid      Int      @id @default(autoincrement())
+  itemname    String   @db.VarChar(50)
+  description String?  @db.VarChar(150)
+  amount      Int      @default(1)
+  borrow      borrow[]
+}
+
+model person {
+  personid    Int      @id @default(autoincrement())
+  personname  String   @db.VarChar(50)
+  phonenumber String?  @db.VarChar(150)
+  address     Int?
+  borrow      borrow[]
+}
+
+model user {
+  userid   Int      @id @default(autoincrement())
+  username String   @db.VarChar(50)
+  password String   @db.Char(65)
+  email    String?  @db.VarChar(150)
+  borrow   borrow[]
+}
+
+model borrow {
+  borrowid     Int       @id @default(autoincrement())
+  borrowItem   item      @relation(fields: [itemid], references: [itemid])
+  borrowPerson person    @relation(fields: [personid], references: [personid])
+  user         user      @relation(fields: [userid], references: [userid])
+  itemid       Int
+  personid     Int
+  userid       Int
+  borrowDate   DateTime  @db.Date
+  returnDate   DateTime? @db.Date
+  status       String    @db.VarChar(150)
+}
