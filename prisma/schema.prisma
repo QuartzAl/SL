@@ -8,38 +8,65 @@ datasource db {
 }
 
 model item {
-  itemid      Int      @id @default(autoincrement())
-  itemname    String   @db.VarChar(50)
+  id          Int      @id @default(autoincrement())
+  item_name   String   @db.VarChar(50)
   description String?  @db.VarChar(150)
   amount      Int      @default(1)
   borrow      borrow[]
 }
 
 model person {
-  personid    Int      @id @default(autoincrement())
-  personname  String   @db.VarChar(50)
-  phonenumber String?  @db.VarChar(150)
-  address     Int?
-  borrow      borrow[]
+  id           Int      @id @default(autoincrement())
+  person_name  String   @db.VarChar(50)
+  phone_number String?  @db.VarChar(150)
+  address      Int?
+  borrow       borrow[]
 }
 
-model user {
-  userid   Int      @id @default(autoincrement())
-  username String   @db.VarChar(50)
-  password String   @db.Char(65)
-  email    String?  @db.VarChar(150)
-  borrow   borrow[]
+model AuthUser {
+  id           String        @id @unique
+  username     String        @db.VarChar(50)
+  password     String        @db.Char(65)
+  email        String?       @db.VarChar(150)
+  auth_session AuthSession[]
+  auth_key     AuthKey[]
+  borrow       borrow[]
+
+  @@map("auth_user")
 }
 
 model borrow {
   borrowid     Int       @id @default(autoincrement())
-  borrowItem   item      @relation(fields: [itemid], references: [itemid])
-  borrowPerson person    @relation(fields: [personid], references: [personid])
-  user         user      @relation(fields: [userid], references: [userid])
+  borrowItem   item      @relation(fields: [itemid], references: [id])
+  borrowPerson person    @relation(fields: [personid], references: [id])
+  user         AuthUser  @relation(fields: [userid], references: [id])
   itemid       Int
   personid     Int
-  userid       Int
+  userid       String
   borrowDate   DateTime  @db.Date
   returnDate   DateTime? @db.Date
-  status       String    @db.VarChar(150)
+  amount       Int       @default(1)
+}
+
+model AuthSession {
+  id             String   @id @unique
+  user_id        String
+  active_expires BigInt
+  idle_expires   BigInt
+  auth_user      AuthUser @relation(references: [id], fields: [user_id], onDelete: Cascade)
+
+  @@index([user_id])
+  @@map("auth_session")
+}
+
+model AuthKey {
+  id              String   @id @unique
+  hashed_password String?
+  user_id         String
+  primary_key     Boolean
+  expires         BigInt?
+  auth_user       AuthUser @relation(references: [id], fields: [user_id], onDelete: Cascade)
+
+  @@index([user_id])
+  @@map("auth_key")
 }

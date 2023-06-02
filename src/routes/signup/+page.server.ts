@@ -1,6 +1,6 @@
 import { fail, redirect } from "@sveltejs/kit";
 import { auth } from "$lib/server/lucia";
-import type { PageServerLoad, Actions } from "../$types";
+import type { PageServerLoad, Actions } from "./$types";
 
 // If the user exists, redirect authenticated users to the profile page.
 export const load: PageServerLoad = async ({ locals }) => {
