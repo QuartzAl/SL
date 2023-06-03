@@ -26,17 +26,16 @@ model person {
 model AuthUser {
   id           String        @id @unique
   username     String        @db.VarChar(50)
-  password     String        @db.Char(65)
   email        String?       @db.VarChar(150)
   auth_session AuthSession[]
   auth_key     AuthKey[]
   borrow       borrow[]
 
-  @@map("auth_user")
+  @@map("user")
 }
 
 model borrow {
-  borrowid     Int       @id @default(autoincrement())
+  id     Int       @id @default(autoincrement())
   borrowItem   item      @relation(fields: [itemid], references: [id])
   borrowPerson person    @relation(fields: [personid], references: [id])
   user         AuthUser  @relation(fields: [userid], references: [id])

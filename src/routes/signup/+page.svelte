@@ -1,4 +1,6 @@
 <script lang="ts">
+	import "../../app.css";
+	import "flowbite";
 	import { enhance } from "$app/forms";
 </script>
 
@@ -9,6 +11,6 @@
 		<input id="username" name="username" /><br />
 		<label for="password">Password</label><br />
 		<input type="password" id="password" name="password" /><br />
-		<input type="submit" value="Signup" />
+		<button type="submit" value="Signup" >Signup</button>
 	</form>
 </div>
