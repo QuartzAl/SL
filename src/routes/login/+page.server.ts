@@ -14,6 +14,7 @@ export const actions: Actions = {
 		console.log("hello");
 		const username = form.get("username");
 		const password = form.get("password");
+		console.log(username, password, "hi");
 		// check for empty values
 		if (typeof username !== "string" || typeof password !== "string"){
 			console.log(typeof username, typeof password, "hi");

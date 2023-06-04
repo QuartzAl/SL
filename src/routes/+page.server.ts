@@ -7,17 +7,10 @@ export const load: PageServerLoad = async ({ locals }) => {
 	const { user } = await locals.auth.validateUser();
 	const items = await new PrismaClient().item.findMany();
 	if (!user) throw redirect(302, "/login");
-	return {
-		user,
-		items
-	};
+    await delay(2000);
+	throw redirect(302, "/app");
 };
 
-export const actions: Actions = {
-	default: async ({ locals }) => {
-		const { session } = await locals.auth.validateUser();
-		if (!session) return fail(401);
-		await auth.invalidateSession(session.sessionId); // invalidate session
-		locals.auth.setSession(null); // remove cookie
-	}
-};
+function delay(ms: number) {
+    return new Promise( resolve => setTimeout(resolve, ms) );
+}

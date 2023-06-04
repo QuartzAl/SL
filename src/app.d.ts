@@ -20,6 +20,7 @@ declare global {
 		interface Locals {
 			auth: import("lucia-auth").AuthRequest;
 		}
+
 	}
 }
 
@@ -29,6 +30,7 @@ declare global {
 		type Auth = import("$lib/lucia").Auth;
 		type UserAttributes = {
 			username: string;
+			email: string?;
 		};
 	}
 }

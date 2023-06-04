@@ -1,7 +1,7 @@
 -- CreateTable
 CREATE TABLE "item" (
     "id" SERIAL NOT NULL,
-    "item_name" VARCHAR(50) NOT NULL,
+    "name" VARCHAR(50) NOT NULL,
     "description" VARCHAR(150),
     "amount" INTEGER NOT NULL DEFAULT 1,
 
@@ -11,9 +11,9 @@ CREATE TABLE "item" (
 -- CreateTable
 CREATE TABLE "person" (
     "id" SERIAL NOT NULL,
-    "person_name" VARCHAR(50) NOT NULL,
-    "phone_number" VARCHAR(150),
-    "address" INTEGER,
+    "name" VARCHAR(50) NOT NULL,
+    "phone_number" VARCHAR(50),
+    "address" VARCHAR(250),
 
     CONSTRAINT "person_pkey" PRIMARY KEY ("id")
 );
@@ -22,7 +22,7 @@ CREATE TABLE "person" (
 CREATE TABLE "user" (
     "id" TEXT NOT NULL,
     "username" VARCHAR(50) NOT NULL,
-    "email" VARCHAR(100),
+    "email" VARCHAR(150),
 
     CONSTRAINT "user_pkey" PRIMARY KEY ("id")
 );
