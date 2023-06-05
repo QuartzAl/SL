@@ -23,7 +23,7 @@ export const load: PageServerLoad = async ({ locals, params }) => {
 	if (!user) throw redirect(302, "/login");
 	console.log("params", params);
 	let item = null;
-	if (params.id !== undefined) {
+	if (params.id) {
 		item = await prisma.item.findUnique({
 			where: {
 				id: Number(params.id)
@@ -34,8 +34,9 @@ export const load: PageServerLoad = async ({ locals, params }) => {
 			}
 		});
 	}
-	if (item === null) {throw error(404, "Item not found");}
-	else {item.entryDate = item.entryDate.toISOString().split("T")[0];}
+
+	if(params.id && item === null) {throw error(404, "Item not found");}
+	else if (item !== null) {item.entryDate = item.entryDate.toISOString().split("T")[0];}
 	const categories = await prisma.category.findMany();
 	const conditions = await prisma.condition.findMany();
 	const form = await superValidate(item, schema);

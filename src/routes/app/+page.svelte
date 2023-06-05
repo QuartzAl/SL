@@ -1,5 +1,6 @@
 <script lang="ts">
 	import type { PageData } from './$types';
+	import type { item } from '@prisma/client';
 	import {
 		TableBody,
 		TableBodyCell,
@@ -11,20 +12,33 @@
 		Pagination
 	} from 'flowbite-svelte';
 	import '../../app.css';
+	export let data: PageData;
 
 	let searchTerm = '';
+	let filteredItems = data.items;
+	$: filteredItems = {
+		// search items by name based on the search term
+		// if search term is empty, return all items
+		
+		
+		
+	};
 	
 
-	let helper = {start: 1, end: 10, total: 100}
+	let helper = { start: 1, end: 10, total: 100 };
 
-  const previous = () => {
-    alert('Previous btn clicked. Make a call to your server to fetch data.');
-  };
-  const next = () => {
-    alert('Next btn clicked. Make a call to your server to fetch data.');
-  };
+	const changePage = (page: number) => {
+		alert(`Page ${page} clicked. Make a call to your server to fetch data.`);
+	};
 
-	export let data: PageData;
+	const previous = () => {
+		alert('Previous btn clicked. Make a call to your server to fetch data.');
+	};
+	const next = () => {
+		alert('Next btn clicked. Make a call to your server to fetch data.');
+	};
+
+	
 </script>
 
 <a href="/app/add">
@@ -55,7 +69,7 @@
 		<TableHeadCell class="text-center">Action</TableHeadCell>
 	</TableHead>
 	<TableBody>
-		{#each data.items as item}
+		{#each filteredItems as item}
 			<TableBodyRow>
 				<TableBodyCell>{item.entryDate.toDateString()}</TableBodyCell>
 				<TableBodyCell>{item.name}</TableBodyCell>
@@ -64,15 +78,16 @@
 				<TableBodyCell>{item.condition.name}</TableBodyCell>
 				<TableBodyCell>{item.description}</TableBodyCell>
 				<TableBodyCell class="text-center">
-					<a
-						href="/app/add/{item.id}"
-						class="mx-2 font-medium hover:underline"
-					>
-						<Button type="submit" size="xs" outline color="blue" name="id" value={item.id}>Edit</Button>
+					<a href="/app/add/{item.id}" class="mx-2 font-medium hover:underline">
+						<Button type="submit" size="xs" outline color="blue" name="id" value={item.id}
+							>Edit</Button
+						>
 					</a>
 					<form method="post">
-                        <Button type="submit" size="xs" outline color="red" name="id" value={item.id}>Delete</Button>
-                    </form>
+						<Button type="submit" size="xs" outline color="red" name="id" value={item.id}
+							>Delete</Button
+						>
+					</form>
 				</TableBodyCell>
 			</TableBodyRow>
 		{/each}
