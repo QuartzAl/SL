@@ -65,7 +65,7 @@
 				<TableBodyCell>{item.description}</TableBodyCell>
 				<TableBodyCell class="text-center">
 					<a
-						href="/add/{item.id}"
+						href="/app/add/{item.id}"
 						class="mx-2 font-medium hover:underline"
 					>
 						<Button type="submit" size="xs" outline color="blue" name="id" value={item.id}>Edit</Button>

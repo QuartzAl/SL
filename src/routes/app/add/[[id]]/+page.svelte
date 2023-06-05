@@ -1,5 +1,5 @@
 <script lang="ts">
-	import '../../../app.css';
+	import '../../../../app.css';
 	import SuperDebug from 'sveltekit-superforms/client/SuperDebug.svelte';
 	import { Input, Label, Button, Textarea, Heading, Helper } from 'flowbite-svelte';
 	import type { PageData } from './$types';
@@ -9,6 +9,8 @@
 
 	// Client API:
 	const { form, errors, enhance } = superForm(data.form);
+
+	
 </script>
 
 <Heading customSize="text-lg font-extrabold  md:text-xl lg:text-2xl">Add Item</Heading>
@@ -17,6 +19,7 @@
 
 <div class="w-1/3">
 	<form method="post" use:enhance>
+		<input type="hidden" name="id" bind:value={$form.id} />
 		<div class="relative max-w-sm">
 			<Label for="date" class="mb-2">Item enter date</Label>
 			<div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
@@ -64,8 +67,8 @@
 				>Category</label
 			>
 			<select
-				bind:value={$form.categoryId}
-				name="categoryId"
+				bind:value={$form.categoryid}
+				name="categoryid"
 				class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
 			>
 				<option selected>Select category</option>
@@ -73,8 +76,8 @@
 					<option value={category.id}>{category.name}</option>
 				{/each}
 			</select>
-			{#if $errors.categoryId}
-				<Helper class="text-red-500">{$errors.categoryId}</Helper>
+			{#if $errors.categoryid}
+				<Helper class="text-red-500">{$errors.categoryid}</Helper>
 			{/if}
 		</div>
 		<div>
@@ -82,8 +85,8 @@
 				>Condition</label
 			>
 			<select
-				bind:value={$form.conditionId}
-				name="conditionId"
+				bind:value={$form.conditionid}
+				name="conditionid"
 				class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
 			>
 				<option selected>Select condition</option>
@@ -91,8 +94,8 @@
 					<option value={condition.id}>{condition.name}</option>
 				{/each}
 			</select>
-			{#if $errors.conditionId}
-				<Helper class="text-red-500">{$errors.conditionId}</Helper>
+			{#if $errors.conditionid}
+				<Helper class="text-red-500">{$errors.conditionid}</Helper>
 			{/if}
 		</div>
 		<div>
