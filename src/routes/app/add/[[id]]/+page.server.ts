@@ -14,10 +14,6 @@ const schema = z.object({
 	entryDate: z.date(),
 });
 
-const crudSchema = z.object({
-	id: schema.shape.id.optional()
-});
-
 export const load: PageServerLoad = async ({ locals, params }) => {
 	const { user } = await locals.auth.validateUser();
 	if (!user) throw redirect(302, "/login");
@@ -37,6 +33,7 @@ export const load: PageServerLoad = async ({ locals, params }) => {
 
 	if(params.id && item === null) {throw error(404, "Item not found");}
 	else if (item !== null) {item.entryDate = item.entryDate.toISOString().split("T")[0];}
+	
 	const categories = await prisma.category.findMany();
 	const conditions = await prisma.condition.findMany();
 	const form = await superValidate(item, schema);

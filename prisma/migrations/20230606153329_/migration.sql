@@ -1,21 +1,32 @@
 -- CreateTable
-CREATE TABLE "item" (
+CREATE TABLE "condition" (
     "id" SERIAL NOT NULL,
     "name" VARCHAR(50) NOT NULL,
     "description" VARCHAR(150),
-    "amount" INTEGER NOT NULL DEFAULT 1,
 
-    CONSTRAINT "item_pkey" PRIMARY KEY ("id")
+    CONSTRAINT "condition_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
-CREATE TABLE "person" (
+CREATE TABLE "category" (
     "id" SERIAL NOT NULL,
     "name" VARCHAR(50) NOT NULL,
-    "phone_number" VARCHAR(50),
-    "address" VARCHAR(250),
+    "description" VARCHAR(150),
 
-    CONSTRAINT "person_pkey" PRIMARY KEY ("id")
+    CONSTRAINT "category_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "item" (
+    "id" SERIAL NOT NULL,
+    "name" VARCHAR(50) NOT NULL,
+    "description" VARCHAR(250),
+    "amount" INTEGER NOT NULL DEFAULT 1,
+    "entry_date" DATE NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "condition_id" INTEGER NOT NULL,
+    "category_id" INTEGER NOT NULL,
+
+    CONSTRAINT "item_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
@@ -31,7 +42,7 @@ CREATE TABLE "user" (
 CREATE TABLE "borrow" (
     "id" SERIAL NOT NULL,
     "itemid" INTEGER NOT NULL,
-    "personid" INTEGER NOT NULL,
+    "borrowerName" VARCHAR(50) NOT NULL,
     "userid" TEXT NOT NULL,
     "borrowDate" DATE NOT NULL,
     "returnDate" DATE,
@@ -77,10 +88,13 @@ CREATE UNIQUE INDEX "auth_key_id_key" ON "auth_key"("id");
 CREATE INDEX "auth_key_user_id_idx" ON "auth_key"("user_id");
 
 -- AddForeignKey
-ALTER TABLE "borrow" ADD CONSTRAINT "borrow_itemid_fkey" FOREIGN KEY ("itemid") REFERENCES "item"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "item" ADD CONSTRAINT "item_condition_id_fkey" FOREIGN KEY ("condition_id") REFERENCES "condition"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "borrow" ADD CONSTRAINT "borrow_personid_fkey" FOREIGN KEY ("personid") REFERENCES "person"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "item" ADD CONSTRAINT "item_category_id_fkey" FOREIGN KEY ("category_id") REFERENCES "category"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "borrow" ADD CONSTRAINT "borrow_itemid_fkey" FOREIGN KEY ("itemid") REFERENCES "item"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "borrow" ADD CONSTRAINT "borrow_userid_fkey" FOREIGN KEY ("userid") REFERENCES "user"("id") ON DELETE RESTRICT ON UPDATE CASCADE;

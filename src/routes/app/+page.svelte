@@ -1,6 +1,7 @@
 <script lang="ts">
 	import type { PageData } from './$types';
 	import type { item } from '@prisma/client';
+	import {enhance} from '$app/forms';
 	import {
 		TableBody,
 		TableBodyCell,
@@ -16,13 +17,13 @@
 
 	let searchTerm = '';
 	let filteredItems = data.items;
-	$: filteredItems = {
-		// search items by name based on the search term
-		// if search term is empty, return all items
-		
-		
-		
-	};
+	$: if (searchTerm !== '') {
+		filteredItems = data.items.filter((item: item) => item.name.toLowerCase().includes(searchTerm.toLowerCase()));
+	} else {
+		filteredItems = data.items;
+	}
+
+	console.log(filteredItems);
 	
 
 	let helper = { start: 1, end: 10, total: 100 };
@@ -83,7 +84,7 @@
 							>Edit</Button
 						>
 					</a>
-					<form method="post">
+					<form method="post" use:enhance>
 						<Button type="submit" size="xs" outline color="red" name="id" value={item.id}
 							>Delete</Button
 						>

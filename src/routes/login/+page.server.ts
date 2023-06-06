@@ -11,13 +11,10 @@ export const load: PageServerLoad = async ({ locals }) => {
 export const actions: Actions = {
 	default: async ({ request, locals }) => {
 		const form = await request.formData();
-		console.log("hello");
 		const username = form.get("username");
 		const password = form.get("password");
-		console.log(username, password, "hi");
 		// check for empty values
 		if (typeof username !== "string" || typeof password !== "string"){
-			console.log(typeof username, typeof password, "hi");
 			return fail(400);
 		}
 		try {

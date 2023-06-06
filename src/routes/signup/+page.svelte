@@ -1,10 +1,11 @@
 <script>
 	import '../../app.css';
 	import { Label, Input, Helper, Button } from 'flowbite-svelte';
+	import {enhance} from '$app/forms';
 </script>
 
 <div class="m-6">
-	<form method="post">
+	<form method="post" use:enhance>
 		<div class="mb-6">
 			<Label for="username" class="block mb-2">Username</Label>
 			<Input required name="username" id="username" placeholder="Default input" />
