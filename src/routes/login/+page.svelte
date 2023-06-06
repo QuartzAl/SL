@@ -1,11 +1,13 @@
 <script>
 	import '../../app.css';
 	import 'flowbite';
-    import { enhance } from "$app/forms"
+	import { enhance } from '$app/forms';
 </script>
 
 <div class="m-6 w-1/2">
 	<form method="POST" use:enhance>
+		<p class="text-3xl text-center text-blue-500"><b>LOGIN</b></p>
+		<br />
 		<div class="mb-6">
 			<label for="Username" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
 				>Your Username</label
@@ -39,7 +41,6 @@
 					name="remember"
 					value=""
 					class="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800"
-					
 				/>
 			</div>
 			<label for="remember" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
@@ -51,5 +52,9 @@
 			class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
 			>Submit</button
 		>
+		<br /><br />
+		<p class="text-center">
+			New User? <a class="font-medium hover:underline text-blue-700" href="/signup">SIGN UP</a>
+		</p>
 	</form>
 </div>
