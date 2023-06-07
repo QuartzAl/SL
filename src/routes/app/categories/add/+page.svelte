@@ -18,14 +18,14 @@
         <span>Name</span>
         <Input name="name" type="text" placeholder="name" size="sm" bind:value={$form.name} data-invalid={$errors.name} />
         {#if $errors.name}
-            <Helper class="text-red-500">{$errors.name}</Helper>
+            <Helper class="text-red-500 mb-6">{$errors.name}</Helper>
         {/if}
     </Label>
 
     <Label for="description" class="mb-2">Description</Label>
     <Textarea id="description" rows="4" name="description" bind:value={$form.description}/>
     {#if $errors.description}
-            <Helper class="text-red-500">{$errors.description}</Helper>
+            <Helper class="text-red-500 mb-6">{$errors.description}</Helper>
         {/if}
 
     <Button type="submit">Submit</Button>

@@ -1,7 +1,6 @@
 <script lang="ts">
 	import type { PageData } from './$types';
-	import type { item } from '@prisma/client';
-	import {enhance} from '$app/forms';
+	import { enhance } from '$app/forms';
 	import {
 		TableBody,
 		TableBodyCell,
@@ -16,28 +15,85 @@
 	export let data: PageData;
 
 	let searchTerm = '';
-	let filteredItems = data.items;
+	let filteredItems: item[] = data.items;
 	$: if (searchTerm !== '') {
-		filteredItems = data.items.filter((item: item) => item.name.toLowerCase().includes(searchTerm.toLowerCase()));
+		filteredItems = data.items.filter((item: item) =>
+			item.name.toLowerCase().includes(searchTerm.toLowerCase())
+		);
 	} else {
 		filteredItems = data.items;
 	}
-	
+	type ObjectKey = keyof item;
 
-	let helper = { start: 1, end: 10, total: 100 };
+	let sortKey = 'entryDate' as ObjectKey;
+	let sortDirection = 1;
+	let sortItems: item[] = [];
+	$: {
+		sortItems = [...filteredItems];
+		console.log(filteredItems);
+	}
 
-	const changePage = (page: number) => {
-		alert(`Page ${page} clicked. Make a call to your server to fetch data.`);
+	interface item {
+		id: number;
+		name: string;
+		description: string;
+		amount: Number;
+		category: {
+			name: string;
+		};
+		condition: {
+			name: string;
+		};
+		entryDate: Date;
+	}
+
+	// Define a function to sort the items
+	const sortTable = (key: string) => {
+		// If the same key is clicked, reverse the sort direction
+		if (sortKey === key) {
+			sortDirection = sortDirection * -1;
+		} else {
+			sortKey = key as ObjectKey;
+			sortDirection = 1;
+		}
 	};
 
-	const previous = () => {
-		alert('Previous btn clicked. Make a call to your server to fetch data.');
-	};
-	const next = () => {
-		alert('Next btn clicked. Make a call to your server to fetch data.');
-	};
-
-	
+	$: if (sortKey !== null) {
+		console.log(sortKey);
+		if (sortKey == 'category') {
+			sortItems = filteredItems.sort((a: item, b: item) => {
+				if (a.category.name < b.category.name) {
+					return -sortDirection;
+				}
+				if (a.category.name > b.category.name) {
+					return sortDirection;
+				}
+				return 0;
+			});
+		} else if (sortKey == 'condition') {
+			sortItems = filteredItems.sort((a: item, b: item) => {
+				if (a.condition.name < b.condition.name) {
+					return -sortDirection;
+				}
+				if (a.condition.name > b.condition.name) {
+					return sortDirection;
+				}
+				return 0;
+			});
+		} else {
+			sortItems = filteredItems.sort((a: item, b: item) => {
+				if (a[sortKey] < b[sortKey]) {
+					return -sortDirection;
+				}
+				if (a[sortKey] > b[sortKey]) {
+					return sortDirection;
+				}
+				return 0;
+			});
+		}
+	} else {
+		sortItems = filteredItems;
+	}
 </script>
 
 <a href="/app/add">
@@ -56,28 +112,33 @@
 		Add Item
 	</Button>
 </a>
-<TableSearch placeholder="Search by item name" hoverable={true} bind:inputValue={searchTerm}>
+<TableSearch
+	class=""
+	placeholder="Search by item name"
+	hoverable={true}
+	bind:inputValue={searchTerm}
+>
 	<TableHead>
-		<TableHeadCell>Entry Date</TableHeadCell>
-		<TableHeadCell>Name</TableHeadCell>
-		<TableHeadCell>Amount</TableHeadCell>
-		<TableHeadCell>Category</TableHeadCell>
-		<TableHeadCell>Condition</TableHeadCell>
-		<TableHeadCell>Description</TableHeadCell>
+		<TableHeadCell on:click={() => sortTable('entryDate')}>Entry Date</TableHeadCell>
+		<TableHeadCell on:click={() => sortTable('name')}>Name</TableHeadCell>
+		<TableHeadCell on:click={() => sortTable('amount')}>Amount</TableHeadCell>
+		<TableHeadCell on:click={() => sortTable('category')}>Category</TableHeadCell>
+		<TableHeadCell on:click={() => sortTable('condition')}>Condition</TableHeadCell>
+		<TableHeadCell on:click={() => sortTable('description')}>Description</TableHeadCell>
 
 		<TableHeadCell class="text-center">Action</TableHeadCell>
 	</TableHead>
 	<TableBody>
-		{#each filteredItems as item}
+		{#each sortItems as item}
 			<TableBodyRow>
 				<TableBodyCell>{item.entryDate.toDateString()}</TableBodyCell>
 				<TableBodyCell>{item.name}</TableBodyCell>
 				<TableBodyCell>{item.amount}</TableBodyCell>
 				<TableBodyCell>{item.category.name}</TableBodyCell>
 				<TableBodyCell>{item.condition.name}</TableBodyCell>
-				<TableBodyCell>{item.description}</TableBodyCell>
+				<TableBodyCell class="break-words">{item.description}</TableBodyCell>
 				<TableBodyCell class="text-center">
-					<a href="/app/add/{item.id}" class="mx-2 font-medium hover:underline">
+					<a href="/app/add/{item.id}" class="">
 						<Button type="submit" size="xs" outline color="blue" name="id" value={item.id}
 							>Edit</Button
 						>
@@ -90,43 +151,21 @@
 				</TableBodyCell>
 			</TableBodyRow>
 		{/each}
+		<TableBodyRow>
+			<TableBodyCell>hello \n</TableBodyCell>
+			<TableBodyCell />
+			<TableBodyCell>t}</TableBodyCell>
+			<TableBodyCell>ory.name}</TableBodyCell>
+			<TableBodyCell>tion.name}</TableBodyCell>
+			<TableBodyCell class="max-w-xs whitespace-normal">description}</TableBodyCell>
+			<TableBodyCell class="text-center">
+				<a href="/app/add/id}" class="">
+					<Button type="submit" size="xs" outline color="blue" name="id" value="id}">Edit</Button>
+				</a>
+				<form method="post" action="?/delete" use:enhance>
+					<Button type="submit" size="xs" outline color="red" name="id" value="id}">Delete</Button>
+				</form>
+			</TableBodyCell>
+		</TableBodyRow>
 	</TableBody>
 </TableSearch>
-<div class="flex flex-col items-center justify-center">
-	<div class="text-sm text-gray-700 dark:text-gray-400">
-		Showing <span class="font-semibold text-gray-900 dark:text-white">{helper.start}</span> to
-		<span class="font-semibold text-gray-900 dark:text-white">{helper.end}</span>
-		of <span class="font-semibold text-gray-900 dark:text-white">{helper.total}</span> Entries
-	</div>
-
-	<Pagination table>
-		<div slot="prev" class="flex items-center gap-2">
-			<svg
-				class="w-5 h-5"
-				fill="currentColor"
-				viewBox="0 0 20 20"
-				xmlns="http://www.w3.org/2000/svg"
-				><path
-					fill-rule="evenodd"
-					d="M7.707 14.707a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l2.293 2.293a1 1 0 010 1.414z"
-					clip-rule="evenodd"
-				/></svg
-			>
-			Prev
-		</div>
-		<div slot="next" class="flex items-center gap-2">
-			Next
-			<svg
-				class="w-5 h-5"
-				fill="currentColor"
-				viewBox="0 0 20 20"
-				xmlns="http://www.w3.org/2000/svg"
-				><path
-					fill-rule="evenodd"
-					d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z"
-					clip-rule="evenodd"
-				/></svg
-			>
-		</div>
-	</Pagination>
-</div>
