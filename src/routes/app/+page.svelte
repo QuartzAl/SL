@@ -151,21 +151,5 @@
 				</TableBodyCell>
 			</TableBodyRow>
 		{/each}
-		<TableBodyRow>
-			<TableBodyCell>hello \n</TableBodyCell>
-			<TableBodyCell />
-			<TableBodyCell>t}</TableBodyCell>
-			<TableBodyCell>ory.name}</TableBodyCell>
-			<TableBodyCell>tion.name}</TableBodyCell>
-			<TableBodyCell class="max-w-xs whitespace-normal">description}</TableBodyCell>
-			<TableBodyCell class="text-center">
-				<a href="/app/add/id}" class="">
-					<Button type="submit" size="xs" outline color="blue" name="id" value="id}">Edit</Button>
-				</a>
-				<form method="post" action="?/delete" use:enhance>
-					<Button type="submit" size="xs" outline color="red" name="id" value="id}">Delete</Button>
-				</form>
-			</TableBodyCell>
-		</TableBodyRow>
 	</TableBody>
 </TableSearch>
