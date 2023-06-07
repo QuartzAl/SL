@@ -22,8 +22,6 @@
 	} else {
 		filteredItems = data.items;
 	}
-
-	console.log(filteredItems);
 	
 
 	let helper = { start: 1, end: 10, total: 100 };
@@ -84,7 +82,7 @@
 							>Edit</Button
 						>
 					</a>
-					<form method="post" use:enhance>
+					<form method="post" action="?/delete" use:enhance>
 						<Button type="submit" size="xs" outline color="red" name="id" value={item.id}
 							>Delete</Button
 						>

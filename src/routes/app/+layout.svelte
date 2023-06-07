@@ -18,8 +18,8 @@
 		<NavLi href="/app">Items</NavLi>
 		<NavLi href="/app/borrow">Borrow</NavLi>
 		<NavLi>
-			<form method="POST">
-				<Button type="submit" size="xs" outline color="red"><a href="/login">Sign Out</a></Button>
+			<form method="post" action="/app?/signout">
+				<Button type="submit" size="xs" outline color="red">Sign Out</Button>
 			</form>
 		</NavLi>
 		<NavLi>

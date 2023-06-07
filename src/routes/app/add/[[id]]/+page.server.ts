@@ -17,7 +17,6 @@ const schema = z.object({
 export const load: PageServerLoad = async ({ locals, params }) => {
 	const { user } = await locals.auth.validateUser();
 	if (!user) throw redirect(302, "/login");
-	console.log("params", params);
 	let item = null;
 	if (params.id) {
 		item = await prisma.item.findUnique({
@@ -47,7 +46,6 @@ export const load: PageServerLoad = async ({ locals, params }) => {
 export const actions: Actions = {
 	default: async ({ request, locals }) => {
 		const form = await superValidate(request, schema);
-		console.log("post", form);
 
 		if (!form.valid) {
 			console.log(form);

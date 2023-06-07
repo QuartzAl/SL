@@ -28,9 +28,24 @@ export const load: PageServerLoad = async ({ locals }) => {
 };
 
 export const actions: Actions = {
-	default: async ({ locals }) => {
+	signout: async ({ locals }) => {
 		const { session } = await locals.auth.validateUser();
 		if (!session) return fail(401);
 		
+		await auth.invalidateSession(session.sessionId); // invalidate session
+		locals.auth.setSession(null); // remove cookie
+		throw redirect(302, "/login");
+	},
+	delete: async ({ locals, request }) => {
+		const { user } = await locals.auth.validateUser();
+		if (!user) return fail(401);
+		const form = await request.formData();
+		const id = form.get("id");
+		await prisma.item.delete({
+			where: {
+				id: Number(id)
+			}
+		});
+		throw redirect(302, "/app");
 	}
 };
