@@ -9,7 +9,8 @@
 		TableHeadCell,
 		TableSearch,
 		Button,
-		Pagination
+		Pagination,
+		ButtonGroup
 	} from 'flowbite-svelte';
 	import '../../app.css';
 	export let data: PageData;
@@ -138,16 +139,18 @@
 				<TableBodyCell>{item.condition.name}</TableBodyCell>
 				<TableBodyCell class="break-words">{item.description}</TableBodyCell>
 				<TableBodyCell class="text-center">
-					<a href="/app/add/{item.id}" class="">
-						<Button type="submit" size="xs" outline color="blue" name="id" value={item.id}
-							>Edit</Button
-						>
-					</a>
-					<form method="post" action="?/delete" use:enhance>
-						<Button type="submit" size="xs" outline color="red" name="id" value={item.id}
-							>Delete</Button
-						>
-					</form>
+					<ButtonGroup>
+						<a href="/app/add/{item.id}" class="">
+							<Button type="submit" size="xs" outline color="blue" name="id" value={item.id}
+								>Edit</Button
+							>
+						</a>
+						<form method="post" action="?/delete" use:enhance>
+							<Button type="submit" size="xs" outline color="red" name="id" value={item.id}
+								>Delete</Button
+							>
+						</form>
+					</ButtonGroup>
 				</TableBodyCell>
 			</TableBodyRow>
 		{/each}

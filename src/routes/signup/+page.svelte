@@ -6,7 +6,7 @@
 
 <div class="m-auto w-1/3 shadow-lg p-6 rounded-md mt-20">
 	<form method="post" use:enhance>
-		<p class="text-3xl text-center text-blue-500"><b>SIGN UP</b></p>
+		<p class="text-3xl text-center text-blue-500 font-sans"><b>SIGN UP</b></p>
 		<div class="mb-6">
 			<Label for="username" class="block mb-2">Username</Label>
 			<Input required name="username" id="username" placeholder="username" />
@@ -21,6 +21,8 @@
 			<Helper class="text-sm mt-2">*Optional</Helper>
 		</div>
 
-		<Button type="submit" class="m-auto block">Submit</Button>
+		<div class="flex justify-center">
+			<Button type="submit">Submit</Button>
+		</div>
 	</form>
 </div>

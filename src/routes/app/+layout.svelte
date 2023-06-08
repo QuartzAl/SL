@@ -13,11 +13,11 @@
 	>
 	<NavHamburger on:click={toggle} />
 	<NavUl class="items-center" {hidden}>
-		<NavLi href="/app/profile" active={true}>Profile</NavLi>
-		<NavLi href="/app/categories" active={true}>Categories</NavLi>
-		<NavLi href="/app/conditions" active={true}>Conditions</NavLi>
-		<NavLi href="/app" active={true}>Items</NavLi>
-		<NavLi href="/app/borrow" active={true}>Borrow</NavLi>
+		<NavLi href="/app/profile">Profile</NavLi>
+		<NavLi href="/app/categories">Categories</NavLi>
+		<NavLi href="/app/conditions">Conditions</NavLi>
+		<NavLi href="/app">Items</NavLi>
+		<NavLi href="/app/borrow">Borrow</NavLi>
 		<NavLi>
 			<form method="post" action="/app?/signout">
 				<Button type="submit" size="xs" outline color="red">Sign Out</Button>

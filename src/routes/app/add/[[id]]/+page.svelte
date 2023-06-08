@@ -17,7 +17,14 @@
 <div class="w-1/2 m-auto">
 	<form method="post" use:enhance>
 		<input type="hidden" name="id" bind:value={$form.id} />
-		<div class="grid gap-6 mb-6 md:grid-cols-2">
+		<div>
+			<Label for="name" class="mb-2">Item Name</Label>
+			<Input class="mb-2" type="text" name="name" required bind:value={$form.name} />
+			{#if $errors.name}
+				<Helper class="text-red-500">{$errors.name}</Helper>
+			{/if}
+		</div>
+		<div class="grid gap-6 mb-2 md:grid-cols-2">
 			<div class="relative max-w-sm mb-2">
 				<Label for="date" class="mb-2">Item enter date</Label>
 				<div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
@@ -47,13 +54,6 @@
 			</div>
 
 			<div>
-				<Label for="name" class="mb-2">Item Name</Label>
-				<Input type="text" name="name" required bind:value={$form.name} />
-				{#if $errors.name}
-					<Helper class="text-red-500">{$errors.name}</Helper>
-				{/if}
-			</div>
-			<div>
 				<Label for="amount" class="mb-2">Amount</Label>
 				<Input type="number" name="amount" bind:value={$form.amount} />
 				{#if $errors.amount}
@@ -61,8 +61,8 @@
 				{/if}
 			</div>
 			<div>
-				<label for="category" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-					>Category</label
+				<Label for="category" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+					>Category</Label
 				>
 				<select
 					bind:value={$form.categoryid}
@@ -79,8 +79,8 @@
 				{/if}
 			</div>
 			<div>
-				<label for="condition" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-					>Condition</label
+				<Label for="condition" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+					>Condition</Label
 				>
 				<select
 					bind:value={$form.conditionid}
@@ -96,15 +96,14 @@
 					<Helper class="text-red-500">{$errors.conditionid}</Helper>
 				{/if}
 			</div>
-			<div>
-				<Label for="description" class="mb-2">Description</Label>
-				<Textarea id="description" rows="4" name="description" bind:value={$form.description} />
-				{#if $errors.description}
-					<Helper class="text-red-500">{$errors.description}</Helper>
-				{/if}
-			</div>
-
-			<Button class="m-auto " type="submit">Submit</Button>
 		</div>
+		<div>
+			<Label for="description" class="mb-2">Description</Label>
+			<Textarea id="description" rows="4" name="description" bind:value={$form.description} />
+			{#if $errors.description}
+				<Helper class="text-red-500">{$errors.description}</Helper>
+			{/if}
+		</div>
+		<Button class="mt-6 grid gap-6 m-auto block " type="submit">Submit</Button>
 	</form>
 </div>
