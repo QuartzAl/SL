@@ -9,15 +9,12 @@
 
 	// Client API:
 	const { form, errors, enhance } = superForm(data.form);
-
-	
 </script>
 
-<Heading customSize="text-lg font-extrabold  md:text-xl lg:text-2xl">Add Item</Heading>
+<Heading customSize="text-lg font-extrabold  md:text-xl lg:text-2xl text-center">Add Item</Heading>
 <br />
-<SuperDebug data={$form} />
 
-<div class="w-1/3">
+<div class="w-1/3 m-auto">
 	<form method="post" use:enhance>
 		<input type="hidden" name="id" bind:value={$form.id} />
 		<div class="relative max-w-sm">
