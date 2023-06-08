@@ -6,7 +6,7 @@
 
 <div class="m-auto w-1/3 shadow-lg p-6 rounded-md mt-20">
 	<form method="POST" use:enhance>
-		<p class="text-3xl text-center text-blue-500"><b>LOGIN</b></p>
+		<p class="text-3xl text-center text-blue-500 font-sans"><b>LOGIN</b></p>
 		<br />
 		<div class="mb-6">
 			<label for="Username" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
