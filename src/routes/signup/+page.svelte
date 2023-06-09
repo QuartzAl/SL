@@ -7,7 +7,7 @@
 
 	export let data: PageData;
 
-	let {form, errors, enhance } = superForm(data.form)
+	let { form, errors, enhance } = superForm(data.form);
 </script>
 
 <div class="m-auto w-1/3 shadow-lg p-6 rounded-md mt-20">
@@ -15,7 +15,13 @@
 		<p class="text-3xl text-center text-blue-500 font-sans"><b>SIGN UP</b></p>
 		<div class="mb-6">
 			<Label for="username" class="block mb-2">Username</Label>
-			<Input class="block" name="username" id="username" placeholder="John Doe" bind:value={$form.username}/>
+			<Input
+				class="block"
+				name="username"
+				id="username"
+				placeholder="John Doe"
+				bind:value={$form.username}
+			/>
 			<Helper class="text-sm mt-2">
 				{#if $errors.username}
 					{$errors.username}
@@ -24,7 +30,14 @@
 		</div>
 		<div class="mb-6">
 			<Label for="password" class="block mb-2">Password</Label>
-			<Input class="block" name="password" id="password" type="password" placeholder="VeryStrongPassword" bind:value={$form.password}/>
+			<Input
+				class="block"
+				name="password"
+				id="password"
+				type="password"
+				placeholder="VeryStrongPassword"
+				bind:value={$form.password}
+			/>
 			<Helper class="text-sm mt-2">
 				{#if $errors.password}
 					{$errors.password}
@@ -33,7 +46,14 @@
 		</div>
 		<div class="mb-6">
 			<Label for="passwordConfirm" class="block mb-2">Confirm Password</Label>
-			<Input class="block" name="passwordConfirm" id="passwordConfirm" type="password" placeholder="VeryStrongPassword" bind:value={$form.passwordConfirm}/>
+			<Input
+				class="block"
+				name="passwordConfirm"
+				id="passwordConfirm"
+				type="password"
+				placeholder="VeryStrongPassword"
+				bind:value={$form.passwordConfirm}
+			/>
 			<Helper class="text-sm mt-2">
 				{#if $errors.passwordConfirm}
 					{$errors.passwordConfirm}
@@ -42,8 +62,15 @@
 		</div>
 
 		<div class="mb-6">
-			<Label for="email" class="block mb-2">Sign up Pin</Label>
-			<Input class="block" id="signPassword" name="signPassword" type="password" placeholder="entry password" bind:value={$form.signPassword}/>
+			<Label for="signPassword" class="block mb-2">Sign up Pin</Label>
+			<Input
+				class="block"
+				id="signPassword"
+				name="signPassword"
+				type="password"
+				placeholder="entry pin"
+				bind:value={$form.signPassword}
+			/>
 			<Helper class="text-sm mt-2">
 				{#if $errors.signPassword}
 					{$errors.signPassword}
@@ -52,7 +79,14 @@
 		</div>
 		<div class="mb-6">
 			<Label for="email" class="block mb-2">Email*</Label>
-			<Input class="block" id="email" name="email" type="email" placeholder="John@Doe.com" bind:value={$form.email}/>
+			<Input
+				class="block"
+				id="email"
+				name="email"
+				type="email"
+				placeholder="John@Doe.com"
+				bind:value={$form.email}
+			/>
 			<Helper class="text-sm mt-2">
 				{#if $errors.email}
 					{$errors.email}
