@@ -10,7 +10,8 @@
 		><Heading customSize="text-2xl font-extrabold  md:text-2xl lg:text-4xl">Inventory Data</Heading
 		></NavBrand
 	>
-	<NavUl class="items-center">
+	<NavHamburger on:click={toggle} />
+	<NavUl class="items-center" {hidden}>
 		<NavLi href="/app/profile">Profile</NavLi>
 		<NavLi href="/app/categories">Categories</NavLi>
 		<NavLi href="/app/conditions">Conditions</NavLi>
