@@ -33,9 +33,10 @@
 	let searchTerm = '';
 	let filteredBorrows: borrow[] = data.borrows;
 	$: if (searchTerm !== '') {
-		filteredBorrows = data.borrows.filter((borrow: borrow) =>
-			borrow.borrowerName.toLowerCase().includes(searchTerm.toLowerCase()) ||
-			borrow.item.name.toLowerCase().includes(searchTerm.toLowerCase())
+		filteredBorrows = data.borrows.filter(
+			(borrow: borrow) =>
+				borrow.borrowerName.toLowerCase().includes(searchTerm.toLowerCase()) ||
+				borrow.item.name.toLowerCase().includes(searchTerm.toLowerCase())
 		);
 	} else {
 		filteredBorrows = data.borrows;
@@ -50,8 +51,6 @@
 		sortItems = [...filteredBorrows];
 		console.log(filteredBorrows);
 	}
-
-	
 
 	// Define a function to sort the items
 	const sortTable = (key: string) => {
@@ -100,13 +99,12 @@
 
 	$: {
 		console.log(toggleReturned);
-		if (toggleReturned ) {
+		if (toggleReturned) {
 			returnedBorrows = sortItems;
 		} else {
 			returnedBorrows = sortItems.filter((borrow: borrow) => borrow.returnDate == null);
 		}
 	}
-
 </script>
 
 <a href="/app/borrow/add">
@@ -125,7 +123,7 @@
 		Borrow
 	</Button>
 </a>
-<Toggle on:change={toggleReturn} >Display Returned Items</Toggle>
+<Toggle on:change={toggleReturn}>Display Returned Items</Toggle>
 <TableSearch
 	class="table-fixed"
 	placeholder="Search by item name"
@@ -133,53 +131,93 @@
 	bind:inputValue={searchTerm}
 >
 	<TableHead>
-		<TableHeadCell class="hidden md:table-cell cursor-pointer" on:click={() => sortTable('borrowDate')}>Borrow Date</TableHeadCell>
-		<TableHeadCell padding="px-3 py-3 " class="text-center cursor-pointer" on:click={() => sortTable('borrowerName')}>Name</TableHeadCell>
-		<TableHeadCell padding="py-3" class="text-center cursor-pointer" on:click={() => sortTable('item')}>Item Name</TableHeadCell>
-		<TableHeadCell class="text-center cursor-pointer" on:click={() => sortTable('amount')}>Amount</TableHeadCell>
-		<TableHeadCell class="hidden md:table-cell cursor-pointer" on:click={() => sortTable('borrowPhone')}>Phone Number</TableHeadCell>
-		<TableHeadCell class="hidden md:table-cell cursor-pointer" on:click={() => sortTable('borrowPhone')}>Email</TableHeadCell>
-		<TableHeadCell class="hidden md:table-cell cursor-pointer" on:click={() => sortTable('returnDate')}>Return Date</TableHeadCell>
+		<TableHeadCell
+			class="hidden md:table-cell cursor-pointer"
+			on:click={() => sortTable('borrowDate')}>Borrow Date</TableHeadCell
+		>
+		<TableHeadCell
+			padding="px-3 py-3 "
+			class="text-center cursor-pointer"
+			on:click={() => sortTable('borrowerName')}>Name</TableHeadCell
+		>
+		<TableHeadCell
+			padding="py-3"
+			class="text-center cursor-pointer"
+			on:click={() => sortTable('item')}>Item Name</TableHeadCell
+		>
+		<TableHeadCell class="text-center cursor-pointer" on:click={() => sortTable('amount')}
+			>Amount</TableHeadCell
+		>
+		<TableHeadCell
+			class="hidden md:table-cell cursor-pointer"
+			on:click={() => sortTable('borrowPhone')}>Phone Number</TableHeadCell
+		>
+		<TableHeadCell
+			class="hidden md:table-cell cursor-pointer"
+			on:click={() => sortTable('borrowPhone')}>Email</TableHeadCell
+		>
+		<TableHeadCell
+			class="hidden md:table-cell cursor-pointer "
+			on:click={() => sortTable('returnDate')}>Return Date</TableHeadCell
+		>
 
 		<TableHeadCell class="text-center">Action</TableHeadCell>
 	</TableHead>
 	<TableBody>
 		{#each returnedBorrows as borrow}
 			<TableBodyRow>
-				<TableBodyCell tdClass="hidden md:table-cell px-6 py-4 font-medium ">{borrow.borrowDate.toDateString()}</TableBodyCell>
-				<TableBodyCell tdClass="px-3 py-4 font-medium text-center">{borrow.borrowerName}</TableBodyCell>
+				<TableBodyCell tdClass="hidden md:table-cell px-6 py-4 font-medium "
+					>{borrow.borrowDate.toDateString()}</TableBodyCell
+				>
+				<TableBodyCell tdClass="px-3 py-4 font-medium text-center"
+					>{borrow.borrowerName}</TableBodyCell
+				>
 				<TableBodyCell tdClass="py-4" class="text-center px-3">{borrow.item.name}</TableBodyCell>
 				<TableBodyCell tdClass="px-6 py-4 font-medium text-center">{borrow.amount}</TableBodyCell>
-				<TableBodyCell tdClass="hidden md:table-cell px-6 py-4 font-medium ">{borrow.borrowerPhone}</TableBodyCell>
+				<TableBodyCell tdClass="hidden md:table-cell px-6 py-4 font-medium "
+					>{borrow.borrowerPhone}</TableBodyCell
+				>
 				<TableBodyCell tdClass="hidden md:table-cell px-6 py-4 font-medium ">
 					{#if borrow.borrowerEmail == null}
 						-
 					{:else}
-					{borrow.borrowerEmail}
+						{borrow.borrowerEmail}
 					{/if}
 				</TableBodyCell>
 				<TableBodyCell tdClass="hidden md:table-cell px-6 py-4 font-medium ">
 					{#if borrow.returnDate == null}
 						-
 					{:else}
-					{borrow.returnDate.toDateString()}
+						{borrow.returnDate.toDateString()}
 					{/if}
 				</TableBodyCell>
-				
+
 				<TableBodyCell class="text-center">
 					<ButtonGroup>
 						{#if borrow.returnDate == null}
-						<a href="/app/borrow/add/{borrow.id}" class="">
-							<Button type="submit" class="mr-4" size="xs" outline color="blue" name="id" value={borrow.id}
-								>Edit</Button
-							>
-						</a>
-						
-						<a href="/app/borrow/return/{borrow.id}" class="">
-							<Button type="submit" class="mr-4" size="xs" outline color="blue" name="id" value={borrow.id}
-								>Return</Button
-							>
-						</a>
+							<a href="/app/borrow/add/{borrow.id}" class="">
+								<Button
+									type="submit"
+									class="mr-4"
+									size="xs"
+									outline
+									color="blue"
+									name="id"
+									value={borrow.id}>Edit</Button
+								>
+							</a>
+
+							<a href="/app/borrow/return/{borrow.id}" class="">
+								<Button
+									type="submit"
+									class="mr-4"
+									size="xs"
+									outline
+									color="blue"
+									name="id"
+									value={borrow.id}>Return</Button
+								>
+							</a>
 						{/if}
 						<form method="post" action="?/delete" use:enhance>
 							<Button type="submit" size="xs" outline color="red" name="id" value={borrow.id}
