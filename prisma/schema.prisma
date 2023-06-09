@@ -40,21 +40,20 @@ model AuthUser {
   email        String?       @db.VarChar(150)
   auth_session AuthSession[]
   auth_key     AuthKey[]
-  borrow       borrow[]
 
   @@map("user")
 }
 
 model borrow {
-  id           Int       @id @default(autoincrement())
-  borrowItem   item      @relation(fields: [itemid], references: [id])
-  user         AuthUser  @relation(fields: [userid], references: [id])
-  itemid       Int
-  borrowerName String    @db.VarChar(50)
-  userid       String
-  borrowDate   DateTime  @db.Date
-  returnDate   DateTime? @db.Date
-  amount       Int       @default(1)
+  id            Int       @id @default(autoincrement())
+  item          item      @relation(fields: [itemId], references: [id])
+  itemId        Int
+  borrowerName  String    @db.VarChar(50)
+  borrowerPhone String    @db.VarChar(50)
+  borrowerEmail String?   @db.VarChar(150)
+  borrowDate    DateTime  @db.Date
+  returnDate    DateTime? @db.Date
+  amount        Int       @default(1)
 }
 
 model AuthSession {

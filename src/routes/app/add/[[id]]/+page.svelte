@@ -5,7 +5,6 @@
 	import type { PageData } from './$types';
 	import { superForm } from 'sveltekit-superforms/client';
 
-
 	export let data: PageData;
 
 	// Client API:
@@ -20,7 +19,7 @@
 		<input type="hidden" name="id" bind:value={$form.id} />
 		<div>
 			<Label for="name" class="mb-2">Item Name</Label>
-			<Input class="mb-2" type="text" name="name" required bind:value={$form.name} />
+			<Input class="mb-2" type="text" name="name" bind:value={$form.name} />
 			{#if $errors.name}
 				<Helper class="text-red-500">{$errors.name}</Helper>
 			{/if}
@@ -105,6 +104,6 @@
 				<Helper class="text-red-500">{$errors.description}</Helper>
 			{/if}
 		</div>
-		<Button class="mt-6 grid gap-6 m-auto block " type="submit">Submit</Button>
+		<Button class="mt-6 grid gap-6 m-auto " type="submit">Submit</Button>
 	</form>
 </div>

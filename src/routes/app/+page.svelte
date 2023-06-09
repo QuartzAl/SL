@@ -38,7 +38,7 @@
 		id: number;
 		name: string;
 		description: string;
-		amount: Number;
+		amount: number;
 		category: {
 			name: string;
 		};
@@ -46,6 +46,13 @@
 			name: string;
 		};
 		entryDate: Date;
+	}
+	//  interface for  { _sum: { amount: 2 }, itemId: 1 },
+	interface itemSum {
+		_sum: {
+			amount: number;
+		};
+		itemId: number;
 	}
 
 	// Define a function to sort the items
@@ -95,6 +102,17 @@
 	} else {
 		sortItems = filteredItems;
 	}
+
+	function getBorrowed(id: Number){
+		let amountBorrowed = 0;
+		data.items.forEach((item: item) => {
+			if(item.id == id){
+				amountBorrowed += data.borrowedItems.filter((Itemsum: itemSum) => Itemsum.itemId == item.id)[0]._sum.amount;
+			}
+		});
+		return amountBorrowed;
+		
+	}
 </script>
 
 <a href="/app/add">
@@ -122,7 +140,8 @@
 	<TableHead>
 		<TableHeadCell class="hidden md:table-cell cursor-pointer" on:click={() => sortTable('entryDate')}>Entry Date</TableHeadCell>
 		<TableHeadCell padding="px-3 py-3 " class="text-center cursor-pointer" on:click={() => sortTable('name')}>Name</TableHeadCell>
-		<TableHeadCell padding="py-3" class="text-center cursor-pointer" on:click={() => sortTable('amount')}>Amount</TableHeadCell>
+		<TableHeadCell padding="py-3" class="text-center cursor-pointer" on:click={() => sortTable('amount')}>Amount Total</TableHeadCell>
+		<TableHeadCell padding="py-3" class="text-center cursor-pointer" on:click={() => sortTable('amount')}>Amount Availablen</TableHeadCell>
 		<TableHeadCell class="text-center cursor-pointer" on:click={() => sortTable('category')}>Category</TableHeadCell>
 		<TableHeadCell class="hidden md:table-cell cursor-pointer" on:click={() => sortTable('condition')}>Condition</TableHeadCell>
 		<TableHeadCell class="hidden md:table-cell cursor-pointer" on:click={() => sortTable('description')}>Description</TableHeadCell>
@@ -135,6 +154,7 @@
 				<TableBodyCell tdClass="hidden md:table-cell px-6 py-4 font-medium ">{item.entryDate.toDateString()}</TableBodyCell>
 				<TableBodyCell tdClass="px-3 py-4 font-medium text-center">{item.name}</TableBodyCell>
 				<TableBodyCell tdClass="py-4" class="text-center px-3">{item.amount}</TableBodyCell>
+				<TableBodyCell tdClass="py-4" class="text-center px-3">{item.amount - getBorrowed(item.id)}</TableBodyCell>
 				<TableBodyCell tdClass="px-6 py-4 font-medium ">{item.category.name}</TableBodyCell>
 				<TableBodyCell tdClass="hidden md:table-cell px-6 py-4 font-medium ">{item.condition.name}</TableBodyCell>
 				<TableBodyCell tdClass="hidden md:table-cell px-6 py-4 font-medium ">{item.description}</TableBodyCell>
