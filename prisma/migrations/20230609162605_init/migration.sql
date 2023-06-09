@@ -41,9 +41,10 @@ CREATE TABLE "user" (
 -- CreateTable
 CREATE TABLE "borrow" (
     "id" SERIAL NOT NULL,
-    "itemid" INTEGER NOT NULL,
+    "itemId" INTEGER NOT NULL,
     "borrowerName" VARCHAR(50) NOT NULL,
-    "userid" TEXT NOT NULL,
+    "borrowerPhone" VARCHAR(50) NOT NULL,
+    "borrowerEmail" VARCHAR(150),
     "borrowDate" DATE NOT NULL,
     "returnDate" DATE,
     "amount" INTEGER NOT NULL DEFAULT 1,
@@ -94,10 +95,7 @@ ALTER TABLE "item" ADD CONSTRAINT "item_condition_id_fkey" FOREIGN KEY ("conditi
 ALTER TABLE "item" ADD CONSTRAINT "item_category_id_fkey" FOREIGN KEY ("category_id") REFERENCES "category"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "borrow" ADD CONSTRAINT "borrow_itemid_fkey" FOREIGN KEY ("itemid") REFERENCES "item"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
-
--- AddForeignKey
-ALTER TABLE "borrow" ADD CONSTRAINT "borrow_userid_fkey" FOREIGN KEY ("userid") REFERENCES "user"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "borrow" ADD CONSTRAINT "borrow_itemId_fkey" FOREIGN KEY ("itemId") REFERENCES "item"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "auth_session" ADD CONSTRAINT "auth_session_user_id_fkey" FOREIGN KEY ("user_id") REFERENCES "user"("id") ON DELETE CASCADE ON UPDATE CASCADE;

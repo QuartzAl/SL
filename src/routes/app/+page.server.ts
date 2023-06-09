@@ -17,13 +17,24 @@ export const load: PageServerLoad = async ({ locals }) => {
 				select: {
 					name: true
 				}
-			}
+			},
 		}
-	}
-	);
+	});
+	const borrowedItems = await prisma.borrow.groupBy({
+		by: ["itemId"],
+		where: {
+			returnDate: null
+		},
+		_sum: {
+			amount: true
+		}
+	});
+	console.log(borrowedItems);
+	console.log(items);
 	if (!user) throw redirect(302, "/login");
 	return {
-		items
+		items,
+		borrowedItems
 	};
 };
 
