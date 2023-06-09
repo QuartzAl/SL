@@ -107,7 +107,10 @@
 		let amountBorrowed = 0;
 		data.items.forEach((item: item) => {
 			if(item.id == id){
-				amountBorrowed += data.borrowedItems.filter((Itemsum: itemSum) => Itemsum.itemId == item.id)[0]._sum.amount;
+				let temp = data.borrowedItems.filter((Itemsum: itemSum) => Itemsum.itemId == item.id);
+				if (temp.length > 0){
+					amountBorrowed = temp[0]._sum.amount;
+				}
 			}
 		});
 		return amountBorrowed;
@@ -141,7 +144,7 @@
 		<TableHeadCell class="hidden md:table-cell cursor-pointer" on:click={() => sortTable('entryDate')}>Entry Date</TableHeadCell>
 		<TableHeadCell padding="px-3 py-3 " class="text-center cursor-pointer" on:click={() => sortTable('name')}>Name</TableHeadCell>
 		<TableHeadCell padding="py-3" class="text-center cursor-pointer" on:click={() => sortTable('amount')}>Amount Total</TableHeadCell>
-		<TableHeadCell padding="py-3" class="text-center cursor-pointer" on:click={() => sortTable('amount')}>Amount Availablen</TableHeadCell>
+		<TableHeadCell padding="py-3" class="text-center cursor-pointer" on:click={() => sortTable('amount')}>Amount Available</TableHeadCell>
 		<TableHeadCell class="text-center cursor-pointer" on:click={() => sortTable('category')}>Category</TableHeadCell>
 		<TableHeadCell class="hidden md:table-cell cursor-pointer" on:click={() => sortTable('condition')}>Condition</TableHeadCell>
 		<TableHeadCell class="hidden md:table-cell cursor-pointer" on:click={() => sortTable('description')}>Description</TableHeadCell>
