@@ -14,6 +14,14 @@ const schema = z.object({
 		required_error: "Password is required"
 	}).min(8, { message: "Password must be more than 8 characters" })
 	.max(100, { message: "Password cannot be more than 100 characters" }),
+	passwordConfirm: z.string({
+		required_error: "Confirm password is required"
+	}).min(8, { message: "Confirm password must be more than 8 characters" })
+	.max(100, { message: "Confirm password cannot be more than 100 characters" }),
+
+	signPassword: z.string({
+		required_error: "Password is required"
+	}),
 	email: z.string().email().optional()
 });
 
@@ -33,6 +41,14 @@ export const actions: Actions = {
 
 		if (!form.valid) {
 			return fail(400, { form });
+		}
+
+		if (form.data.password !== form.data.passwordConfirm) {
+			return setError(form, "passwordConfirm", "Passwords do not match");
+		}
+
+		if (form.data.signPassword !== process.env.SIGNUP_PIN) {
+			return setError(form, "signPassword", "Invalid signup pin");
 		}
 
 		try {

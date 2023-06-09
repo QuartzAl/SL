@@ -1,7 +1,14 @@
-<script>
+<script lang="ts">
 	import '../../app.css';
-	import 'flowbite';
-	import { enhance } from '$app/forms';
+	import {Helper } from 'flowbite-svelte';
+
+	import type { PageData } from './$types';
+	import { superForm } from 'sveltekit-superforms/client';
+	import SuperDebug from 'sveltekit-superforms/client/SuperDebug.svelte';
+
+	export let data: PageData;
+
+	let {form, errors, enhance } = superForm(data.form)
 </script>
 
 <div class="m-auto w-1/3 shadow-lg p-6 rounded-md mt-20">
@@ -9,7 +16,9 @@
 		<p class="text-3xl text-center text-blue-500 font-sans"><b>LOGIN</b></p>
 		<br />
 		<div class="mb-6">
-			<label for="Username" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+			<label for="Username" 
+			class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+
 				>Your Username</label
 			>
 			<input
@@ -18,8 +27,11 @@
 				name="username"
 				class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
 				placeholder="John Doe"
-				required
+				bind:value={$form.username}
 			/>
+			{#if $errors.username}
+			<Helper class="text-red-500 text-xs italic">{$errors.username}</Helper>
+			{/if}
 		</div>
 		<div class="mb-6">
 			<label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
@@ -29,10 +41,13 @@
 				type="password"
 				id="password"
 				name="password"
-				placeholder="••••••"
+				placeholder="My Password"
 				class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-				required
+				bind:value={$form.password}
 			/>
+			{#if $errors.username}
+			<Helper class="text-red-500 text-xs italic">{$errors.username}</Helper>
+			{/if}
 		</div>
 		<div class="flex items-start mb-6">
 			<div class="flex items-center h-5">

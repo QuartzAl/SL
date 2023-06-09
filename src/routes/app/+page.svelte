@@ -141,7 +141,7 @@
 				<TableBodyCell class="text-center">
 					<ButtonGroup>
 						<a href="/app/add/{item.id}" class="">
-							<Button type="submit" class="my-4" size="xs" outline color="blue" name="id" value={item.id}
+							<Button type="submit" class="mr-4" size="xs" outline color="blue" name="id" value={item.id}
 								>Edit</Button
 							>
 						</a>
