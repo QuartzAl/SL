@@ -9,9 +9,13 @@
 
 	// Client API:
 	const { form, errors, enhance } = superForm(data.form);
+	// get day + 1 day and store in variable
+	const today = new Date();
+	today.setDate(today.getDate() + 1);
+
 </script>
 
-<Heading customSize="text-lg font-extrabold  md:text-xl lg:text-2xl text-center">Add Borrow</Heading
+<Heading customSize="text-lg font-extrabold  md:text-xl lg:text-2xl text-center">Return Item</Heading
 >
 <br />
 <div class="w-1/2 m-auto">
@@ -26,6 +30,7 @@
 						fill="currentColor"
 						viewBox="0 0 20 20"
 						xmlns="http://www.w3.org/2000/svg"
+						
 						><path
 							fill-rule="evenodd"
 							d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z"
@@ -37,6 +42,7 @@
 					bind:value={$form.returnDate}
 					name="returnDate"
 					type="date"
+					max={today.toISOString().split('T')[0]}
 					class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
 					placeholder="Select date"
 				/>
