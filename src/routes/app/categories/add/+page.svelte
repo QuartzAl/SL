@@ -15,14 +15,13 @@
 >
 <br />
 <form method="post" use:enhance>
-	<div class="w-1/3 m-auto space-y-3">
+	<div class="w-1/2 m-auto space-y-3">
 		<Label class="space-y-2 ">
 			<span>Name</span>
 			<Input
 				name="name"
 				type="text"
 				placeholder="name"
-				size="sm"
 				bind:value={$form.name}
 				data-invalid={$errors.name}
 			/>

@@ -1,6 +1,6 @@
 <script lang="ts">
 	import '../../app.css';
-	import {Helper } from 'flowbite-svelte';
+	import { Helper } from 'flowbite-svelte';
 
 	import type { PageData } from './$types';
 	import { superForm } from 'sveltekit-superforms/client';
@@ -8,17 +8,15 @@
 
 	export let data: PageData;
 
-	let {form, errors, enhance } = superForm(data.form)
+	let { form, errors, enhance } = superForm(data.form);
 </script>
 
-<div class="m-auto w-1/3 shadow-lg p-6 rounded-md mt-20">
+<div class="m-auto w-1/3 shadow-lg p-6 rounded-lg mt-20">
 	<form method="POST" use:enhance>
 		<p class="text-3xl text-center text-blue-500 font-sans"><b>LOGIN</b></p>
 		<br />
 		<div class="mb-6">
-			<label for="Username" 
-			class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-
+			<label for="Username" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
 				>Your Username</label
 			>
 			<input
@@ -30,7 +28,7 @@
 				bind:value={$form.username}
 			/>
 			{#if $errors.username}
-			<Helper class="text-red-500 text-xs italic">{$errors.username}</Helper>
+				<Helper class="text-red-500 text-xs italic">{$errors.username}</Helper>
 			{/if}
 		</div>
 		<div class="mb-6">
@@ -46,7 +44,7 @@
 				bind:value={$form.password}
 			/>
 			{#if $errors.username}
-			<Helper class="text-red-500 text-xs italic">{$errors.username}</Helper>
+				<Helper class="text-red-500 text-xs italic">{$errors.username}</Helper>
 			{/if}
 		</div>
 		<div class="flex items-start mb-6">

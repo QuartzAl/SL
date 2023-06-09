@@ -40,6 +40,7 @@
 	"type": "module",
 	"dependencies": {
 		"@lucia-auth/adapter-prisma": "^2.0.0",
+		"@mantine/core": "^6.0.13",
 		"@popperjs/core": "^2.11.8",
 		"@prisma/client": "^4.15.0",
 		"classnames": "^2.3.2",
