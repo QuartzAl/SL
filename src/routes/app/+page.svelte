@@ -113,33 +113,33 @@
 	</Button>
 </a>
 <TableSearch
-	class=""
+	class="table-fixed"
 	placeholder="Search by item name"
 	hoverable={true}
 	bind:inputValue={searchTerm}
 >
 	<TableHead>
-		<TableHeadCell on:click={() => sortTable('entryDate')}>Entry Date</TableHeadCell>
-		<TableHeadCell on:click={() => sortTable('name')}>Name</TableHeadCell>
-		<TableHeadCell on:click={() => sortTable('amount')}>Amount</TableHeadCell>
-		<TableHeadCell on:click={() => sortTable('category')}>Category</TableHeadCell>
-		<TableHeadCell on:click={() => sortTable('condition')}>Condition</TableHeadCell>
-		<TableHeadCell on:click={() => sortTable('description')}>Description</TableHeadCell>
+		<TableHeadCell class="hidden md:table-cell cursor-pointer" on:click={() => sortTable('entryDate')}>Entry Date</TableHeadCell>
+		<TableHeadCell padding="px-3 py-3 " class="text-center cursor-pointer" on:click={() => sortTable('name')}>Name</TableHeadCell>
+		<TableHeadCell padding="py-3" class="text-center cursor-pointer" on:click={() => sortTable('amount')}>Amount</TableHeadCell>
+		<TableHeadCell class="text-center cursor-pointer" on:click={() => sortTable('category')}>Category</TableHeadCell>
+		<TableHeadCell class="hidden md:table-cell cursor-pointer" on:click={() => sortTable('condition')}>Condition</TableHeadCell>
+		<TableHeadCell class="hidden md:table-cell cursor-pointer" on:click={() => sortTable('description')}>Description</TableHeadCell>
 
 		<TableHeadCell class="text-center">Action</TableHeadCell>
 	</TableHead>
 	<TableBody>
 		{#each sortItems as item}
 			<TableBodyRow>
-				<TableBodyCell>{item.entryDate.toDateString()}</TableBodyCell>
-				<TableBodyCell>{item.name}</TableBodyCell>
-				<TableBodyCell>{item.amount}</TableBodyCell>
-				<TableBodyCell>{item.category.name}</TableBodyCell>
-				<TableBodyCell>{item.condition.name}</TableBodyCell>
-				<TableBodyCell class="break-words">{item.description}</TableBodyCell>
+				<TableBodyCell tdClass="hidden md:table-cell px-6 py-4 font-medium ">{item.entryDate.toDateString()}</TableBodyCell>
+				<TableBodyCell tdClass="px-3 py-4 font-medium text-center">{item.name}</TableBodyCell>
+				<TableBodyCell tdClass="py-4" class="text-center px-3">{item.amount}</TableBodyCell>
+				<TableBodyCell tdClass="px-6 py-4 font-medium ">{item.category.name}</TableBodyCell>
+				<TableBodyCell tdClass="hidden md:table-cell px-6 py-4 font-medium ">{item.condition.name}</TableBodyCell>
+				<TableBodyCell tdClass="hidden md:table-cell px-6 py-4 font-medium ">{item.description}</TableBodyCell>
 				<TableBodyCell class="text-center">
 					<a href="/app/add/{item.id}" class="">
-						<Button type="submit" size="xs" outline color="blue" name="id" value={item.id}
+						<Button type="submit" class="my-4" size="xs" outline color="blue" name="id" value={item.id}
 							>Edit</Button
 						>
 					</a>

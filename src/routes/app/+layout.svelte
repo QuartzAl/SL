@@ -1,11 +1,10 @@
 <script>
-	import '../../app.css';
-	import { DarkMode } from 'flowbite-svelte';
-
-	import { Navbar, NavBrand, NavLi, NavUl, NavHamburger, Button, Heading } from 'flowbite-svelte';
+	import '../../app.css';;
+	import { Navbar, NavBrand, NavLi, NavUl, NavHamburger, Button, Heading, DarkMode } from 'flowbite-svelte';
+	let toggle = false;
 </script>
 
-<body class="bg-gray-100 dark:bg-gray-800" />
+<svelte:body class="bg-gray-100 dark:bg-gray-800" />
 <Navbar let:hidden let:toggle color="form">
 	<NavBrand href="/"
 		><Heading customSize="text-2xl font-extrabold  md:text-2xl lg:text-4xl">Inventory Data</Heading
@@ -28,6 +27,9 @@
 	</NavUl>
 	<NavHamburger />
 </Navbar>
-<div class="m-6">
-	<slot />
+<div class="min-h-screen bg-gray-100 dark:bg-gray-800">
+	<div class="p-6">
+		<slot />
+	</div>
+	
 </div>

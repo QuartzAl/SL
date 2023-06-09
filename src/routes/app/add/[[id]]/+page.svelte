@@ -5,6 +5,7 @@
 	import type { PageData } from './$types';
 	import { superForm } from 'sveltekit-superforms/client';
 
+
 	export let data: PageData;
 
 	// Client API:
@@ -15,7 +16,6 @@
 
 <Heading customSize="text-lg font-extrabold  md:text-xl lg:text-2xl">Add Item</Heading>
 <br />
-<SuperDebug data={$form} />
 
 <div class="w-1/3">
 	<form method="post" use:enhance>
@@ -27,7 +27,6 @@
 					aria-hidden="true"
 					class="w-5 h-5 text-gray-500 dark:text-gray-400"
 					fill="currentColor"
-					viewBox="0 0 20 20"
 					xmlns="http://www.w3.org/2000/svg"
 					><path
 						fill-rule="evenodd"
@@ -38,6 +37,7 @@
 			</div>
 			<input
 				bind:value={$form.entryDate}
+				
 				name="entryDate"
 				type="date"
 				class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
