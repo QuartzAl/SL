@@ -12,13 +12,12 @@
 	// get day + 1 day and store in variable
 	const today = new Date();
 	today.setDate(today.getDate() + 1);
-
 </script>
 
 <Heading customSize="text-lg font-extrabold  md:text-xl lg:text-2xl text-center">Pengembalian Barang</Heading
 >
 <br />
-<div class="w-1/2 m-auto">
+<div class="w-1/4 m-auto">
 	<form method="post" use:enhance>
 		<input type="hidden" name="id" bind:value={$form.id} />
 			<div class="relative max-w-sm mb-2">
