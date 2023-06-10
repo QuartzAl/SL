@@ -11,7 +11,8 @@
 		TableHeadCell,
 		Button,
 		Alert,
-		Helper
+		Helper,
+		ButtonGroup
 	} from 'flowbite-svelte';
 
 	export let data: PageData;
@@ -61,7 +62,7 @@
 		<TableHead>
 			<TableHeadCell>Nama</TableHeadCell>
 			<TableHeadCell>Deskripsi</TableHeadCell>
-			<TableHeadCell>Tindakan</TableHeadCell>
+			<TableHeadCell class="text-center">Tindakan</TableHeadCell>
 		</TableHead>
 		<TableBody>
 			{#each data.conditions as condition}
@@ -74,8 +75,10 @@
 							<Helper color="disabled">Tidak ada deskripsi</Helper>
 						{/if}
 					</TableBodyCell>
-					<TableBodyCell>
+					<TableBodyCell class="text-center">
+						<ButtonGroup>
 						<form method="post" use:enhance>
+							<Button size="xs" outline color="blue" href="/app/conditions/add/{condition.id}">Ubah</Button>
 							<Button
 								type="submit"
 								size="xs"
@@ -86,6 +89,7 @@
 								on:click={($form.id = condition.id)}>Hapus</Button
 							>
 						</form>
+						</ButtonGroup>
 					</TableBodyCell>
 				</TableBodyRow>
 			{/each}

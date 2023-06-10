@@ -29,8 +29,6 @@ export const load: PageServerLoad = async ({ locals }) => {
 			amount: true
 		}
 	});
-	console.log(borrowedItems);
-	console.log(items);
 	if (!user) throw redirect(302, "/login");
 	return {
 		items,

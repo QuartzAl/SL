@@ -61,6 +61,7 @@ export const actions: Actions = {
 			console.log(form);
 			return fail(400, { form });
 		}
+		console.log(form.data);
 
 		if (form.data.id !== undefined) {
 			await prisma.item.update({
