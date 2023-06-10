@@ -6,7 +6,9 @@ import { superValidate } from "sveltekit-superforms/server";
 
 
 const schema = z.object({
-    name: z.string().min(1).max(50),
+    name: z.string().min(1, {
+        message: "Nama kategori wajib diisi"
+    }).max(50),
     description: z.string().max(150),
 });
 

@@ -10,7 +10,8 @@
 		TableHead,
 		TableHeadCell,
 		Button,
-		Alert
+		Alert,
+		Helper
 	} from 'flowbite-svelte';
 
 	export let data: PageData;
@@ -32,7 +33,7 @@
 				<path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
 			</svg>
 
-			Add Condition
+			Tambah Kondisi
 		</Button>
 	</a>
 	{#if $errors.id}
@@ -58,15 +59,21 @@
 
 	<Table hoverable={true}>
 		<TableHead>
-			<TableHeadCell>Name</TableHeadCell>
-			<TableHeadCell>Description</TableHeadCell>
-			<TableHeadCell>Action</TableHeadCell>
+			<TableHeadCell>Nama</TableHeadCell>
+			<TableHeadCell>Deskripsi</TableHeadCell>
+			<TableHeadCell>Tindakan</TableHeadCell>
 		</TableHead>
 		<TableBody>
 			{#each data.conditions as condition}
 				<TableBodyRow>
 					<TableBodyCell>{condition.name}</TableBodyCell>
-					<TableBodyCell>{condition.description}</TableBodyCell>
+					<TableBodyCell>
+						{#if condition.description != ""}
+							{condition.description}
+						{:else}
+							<Helper color="disabled">Tidak ada deskripsi</Helper>
+						{/if}
+					</TableBodyCell>
 					<TableBodyCell>
 						<form method="post" use:enhance>
 							<Button
@@ -76,7 +83,7 @@
 								color="red"
 								name="id"
 								value={condition.id}
-								on:click={($form.id = condition.id)}>Delete</Button
+								on:click={($form.id = condition.id)}>Hapus</Button
 							>
 						</form>
 					</TableBodyCell>

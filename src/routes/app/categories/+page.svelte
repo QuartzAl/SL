@@ -32,7 +32,7 @@
 			>
 				<path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
 			</svg>
-			Add Category
+			Tambah Kategori
 		</Button>
 	</a>
 	{#if $errors.id}
@@ -45,15 +45,22 @@
 
 	<Table hoverable={true}>
 		<TableHead>
-			<TableHeadCell>Name</TableHeadCell>
-			<TableHeadCell>Description</TableHeadCell>
-			<TableHeadCell>Action</TableHeadCell>
+			<TableHeadCell>Nama</TableHeadCell>
+			<TableHeadCell>Deskripsi</TableHeadCell>
+			<TableHeadCell>Tindakan</TableHeadCell>
 		</TableHead>
 		<TableBody>
 			{#each data.categories as category}
 				<TableBodyRow>
 					<TableBodyCell>{category.name}</TableBodyCell>
-					<TableBodyCell>{category.description}</TableBodyCell>
+					<TableBodyCell>
+						{#if category.description != ""}
+							{category.description}
+						{:else}
+							<Helper color="disabled">Tidak ada deskripsi</Helper>
+						{/if}
+						{category.description}
+					</TableBodyCell>
 					<TableBodyCell>
 						<form method="post" use:enhance>
 							<Button
@@ -63,7 +70,7 @@
 								color="red"
 								name="id"
 								value={category.id}
-								on:click={($form.id = category.id)}>Delete</Button
+								on:click={($form.id = category.id)}>Hapus</Button
 							>
 						</form>
 					</TableBodyCell>

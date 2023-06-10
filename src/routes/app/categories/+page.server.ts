@@ -41,9 +41,9 @@ export const actions: Actions = {
                 }
             })
             if (relationCount._count.item == 1) {
-                return setError(form, "id", "Cannot delete category with linked item: '" + categoryItems.item[0].name + "'");
+                return setError(form, "id", "Tidak bisa menghapus kategori dengan barang yang terhubung: '" + categoryItems.item[0].name + "'");
             } else if (relationCount._count.item > 1) {
-                return setError(form, "id", "Cannot delete category with linked items: '" + categoryItems.item.map((item: item) => item.name).join("', '") + "'");
+                return setError(form, "id", "Tidak bisa menghapus kategori dengan beberapa barang yang terhubung: '" + categoryItems.item.map((item: item) => item.name).join("', '") + "'");
             }
         }
             await prisma.category.delete(

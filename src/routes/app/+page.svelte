@@ -9,7 +9,7 @@
 		TableHeadCell,
 		TableSearch,
 		Button,
-		Pagination,
+		Helper,
 		ButtonGroup
 	} from 'flowbite-svelte';
 	import '../../app.css';
@@ -190,9 +190,13 @@
 				<TableBodyCell tdClass="hidden md:table-cell px-6 py-4 font-medium text-center"
 					>{item.condition.name}</TableBodyCell
 				>
-				<TableBodyCell tdClass="hidden md:table-cell px-6 py-4 font-medium "
-					>{item.description}</TableBodyCell
-				>
+				<TableBodyCell tdClass="hidden md:table-cell px-6 py-4 font-medium ">
+					{#if item.description != ''}
+						{item.description}
+					{:else}
+						<Helper color="disabled">Tidak ada deskripsi</Helper>
+					{/if}
+				</TableBodyCell>
 				<TableBodyCell class="text-center">
 					<form method="post" action="?/delete" use:enhance>
 						<ButtonGroup>

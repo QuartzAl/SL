@@ -7,7 +7,7 @@
 </script>
 <div class="m-5">
 
-	<Heading customSize="text-lg font-extrabold  md:text-xl lg:text-2xl">Profile</Heading>
+	<Heading customSize="text-lg font-extrabold  md:text-xl lg:text-2xl">Profil</Heading>
 	<P>
 		Username: {data.user.username}
 		<br />

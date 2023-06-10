@@ -3,7 +3,6 @@
 	import type { PageData } from './$types';
 	import { superForm } from 'sveltekit-superforms/client';
 	import { Input, Label, Textarea, Button, Helper, Heading } from 'flowbite-svelte';
-	import SuperDebug from 'sveltekit-superforms/client/SuperDebug.svelte';
 
 	export let data: PageData;
 
@@ -11,16 +10,16 @@
 </script>
 
 <Heading customSize="text-lg font-extrabold  md:text-xl lg:text-2xl text-center"
-	>Add Conditions</Heading
+	>Tambah Kondisi Barang</Heading
 >
 <form method="post" use:enhance>
 	<div class="w-1/2 m-auto space-y-3">
 		<Label class="space-y-2">
-			<span>Name</span>
+			<span>Nama</span>
 			<Input
 				name="name"
 				type="text"
-				placeholder="name"
+				placeholder="rusak, baik, dll"
 				bind:value={$form.name}
 				data-invalid={$errors.name}
 			/>
@@ -29,8 +28,8 @@
 			{/if}
 		</Label>
 
-		<Label for="description" class="mb-2">Description</Label>
-		<Textarea id="description" rows="4" name="description" bind:value={$form.description} />
+		<Label for="description" class="mb-2">Deskripsi</Label>
+		<Textarea id="description" placeholder="barang rusak harus dibuang / barang masih dapat diperbaiki / barang masih dapat digunakan" rows="4" name="description" bind:value={$form.description} />
 		{#if $errors.description}
 			<Helper class="text-red-500">{$errors.description}</Helper>
 		{/if}
