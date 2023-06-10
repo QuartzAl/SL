@@ -9,6 +9,8 @@
 
 	// Client API:
 	const { form, errors, enhance } = superForm(data.form);
+
+	errors.clear();
 </script>
 
 <Heading customSize="text-lg font-extrabold  md:text-xl lg:text-2xl text-center"

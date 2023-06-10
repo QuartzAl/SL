@@ -10,7 +10,8 @@
 		TableSearch,
 		Button,
 		Toggle,
-		ButtonGroup
+		ButtonGroup,
+		Helper
 	} from 'flowbite-svelte';
 	import '../../../app.css';
 	import { writable } from 'svelte/store';
@@ -49,7 +50,6 @@
 	let sortItems: borrow[] = [];
 	$: {
 		sortItems = [...filteredBorrows];
-		console.log(filteredBorrows);
 	}
 
 	// Define a function to sort the items
@@ -98,7 +98,6 @@
 	};
 
 	$: {
-		console.log(toggleReturned);
 		if (toggleReturned) {
 			returnedBorrows = sortItems;
 		} else {
@@ -182,7 +181,7 @@
 				>
 				<TableBodyCell tdClass="hidden md:table-cell px-6 py-4 font-medium ">
 					{#if borrow.borrowerEmail == null}
-						-
+						<Helper color="disabled">Tidak ada Email</Helper>
 					{:else}
 						{borrow.borrowerEmail}
 					{/if}

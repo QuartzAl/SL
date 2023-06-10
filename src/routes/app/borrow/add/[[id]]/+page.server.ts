@@ -99,6 +99,9 @@ export const actions: Actions = {
 		}
 
 		if (form.data.id !== undefined) {
+			if (form.data.borrowerEmail == undefined) {
+				form.data.borrowerEmail = null;
+			}
 			await prisma.borrow.update({
 				where: {
 					id: form.data.id
