@@ -1,6 +1,15 @@
 <script>
-	import '../../app.css';;
-	import { Navbar, NavBrand, NavLi, NavUl, NavHamburger, Button, Heading, DarkMode } from 'flowbite-svelte';
+	import '../../app.css';
+	import {
+		Navbar,
+		NavBrand,
+		NavLi,
+		NavUl,
+		NavHamburger,
+		Button,
+		Heading,
+		DarkMode
+	} from 'flowbite-svelte';
 	let toggle = false;
 </script>
 
@@ -32,5 +41,4 @@
 	<div class="p-6">
 		<slot />
 	</div>
-	
 </div>
