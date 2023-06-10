@@ -7,17 +7,19 @@ import { setError, superValidate } from "sveltekit-superforms/server";
 const schema = z.object({
 	id: z.number().optional(),
 	borrowerName: z.string({
-		required_error: "Borrower name is required"
+		required_error: "Nama Peminjam wajib diisi"
 	}).max(50),
 	borrowerPhone: z.string({
-		required_error: "Borrower phone is required"
+		required_error: "Nomor Telepon wajib diisi"
 	}).max(50),
 	borrowerEmail: z.string().max(50).optional(),
 	itemId: z.number({
-		required_error: "Item is required"
+		required_error: "Harus terdapat barang yang dipinjam"
 	}),
 	borrowDate: z.date(),
-	amount: z.number().min(1),
+	amount: z.number().min(1, {
+		message: "Jumlah barang yang dipinjamn paling tidak 1"
+	}),
 
 });
 
@@ -71,19 +73,19 @@ export const actions: Actions = {
 		} else{
 			borrowedItems = await prisma.borrow.findMany({
 				where: {
-					id: { not: form.data.Id },
+					id: { not: form.data.id },
 					returnDate: null,
 				}
 			});
 		}
 		
 		let totalBorrowed = 0;
-		borrowedItems.forEach((borrowedItem) => {
+		borrowedItems.forEach((borrowedItem: any) => {
 			totalBorrowed += borrowedItem.amount;
 		});
 		const itemAvailable = item.amount - totalBorrowed;
 		if ((itemAvailable) < form.data.amount) {
-			return setError(form, "amount", "Amount is greater than items available for item "+ item.name + " with available: " + itemAvailable);
+			return setError(form, "amount", "Jumlah barang yang dipinjam lebih banyak daripada jumlah barang tersedia untuk barang:"+ item.name + " dengan jumlah tersedia: " + itemAvailable);
 		}
 		
 
@@ -98,7 +100,7 @@ export const actions: Actions = {
 					borrowerPhone: form.data.borrowerPhone,
 					borrowerEmail: form.data.borrowerEmail,
 					borrowDate: form.data.borrowDate,
-					returnDate: form.data.returnDate? form.data.returnDate : null,
+					returnDate: null,
 					amount: form.data.amount,
 					item: {
 						connect: {

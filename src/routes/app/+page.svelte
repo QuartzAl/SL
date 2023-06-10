@@ -131,25 +131,25 @@
 			<path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
 		</svg>
 
-		Add Item
+		Tambah Barang
 	</Button>
 </a>
 <TableSearch
 	class="table-fixed"
-	placeholder="Search by item name"
+	placeholder="Cari berdasarkan nama barang"
 	hoverable={true}
 	bind:inputValue={searchTerm}
 >
 	<TableHead>
-		<TableHeadCell class="hidden md:table-cell cursor-pointer" on:click={() => sortTable('entryDate')}>Entry Date</TableHeadCell>
-		<TableHeadCell padding="px-3 py-3 " class="text-center cursor-pointer" on:click={() => sortTable('name')}>Name</TableHeadCell>
-		<TableHeadCell padding="py-3" class="text-center cursor-pointer" on:click={() => sortTable('amount')}>Amount Total</TableHeadCell>
-		<TableHeadCell padding="py-3" class="text-center cursor-pointer" on:click={() => sortTable('amount')}>Amount Available</TableHeadCell>
-		<TableHeadCell class="text-center cursor-pointer" on:click={() => sortTable('category')}>Category</TableHeadCell>
-		<TableHeadCell class="hidden md:table-cell cursor-pointer" on:click={() => sortTable('condition')}>Condition</TableHeadCell>
-		<TableHeadCell class="hidden md:table-cell cursor-pointer" on:click={() => sortTable('description')}>Description</TableHeadCell>
+		<TableHeadCell class="hidden md:table-cell cursor-pointer" on:click={() => sortTable('entryDate')}>Tanggal masuk</TableHeadCell>
+		<TableHeadCell padding="px-3 py-3 " class="text-center cursor-pointer" on:click={() => sortTable('name')}>Nama</TableHeadCell>
+		<TableHeadCell padding="py-3" class="text-center cursor-pointer" on:click={() => sortTable('amount')}>Jumlah total</TableHeadCell>
+		<TableHeadCell padding="py-3" class="text-center cursor-pointer" on:click={() => sortTable('amount')}>Jumlah tersedia</TableHeadCell>
+		<TableHeadCell class="text-center cursor-pointer" on:click={() => sortTable('category')}>kategori</TableHeadCell>
+		<TableHeadCell class="hidden md:table-cell cursor-pointer text-center" on:click={() => sortTable('condition')}>kondisi</TableHeadCell>
+		<TableHeadCell class="hidden md:table-cell cursor-pointer" on:click={() => sortTable('description')}>deskripsi</TableHeadCell>
 
-		<TableHeadCell class="text-center">Action</TableHeadCell>
+		<TableHeadCell class="text-center">Tindakan</TableHeadCell>
 	</TableHead>
 	<TableBody>
 		{#each sortItems as item}
@@ -158,22 +158,27 @@
 				<TableBodyCell tdClass="px-3 py-4 font-medium text-center">{item.name}</TableBodyCell>
 				<TableBodyCell tdClass="py-4" class="text-center px-3">{item.amount}</TableBodyCell>
 				<TableBodyCell tdClass="py-4" class="text-center px-3">{item.amount - getBorrowed(item.id)}</TableBodyCell>
-				<TableBodyCell tdClass="px-6 py-4 font-medium ">{item.category.name}</TableBodyCell>
-				<TableBodyCell tdClass="hidden md:table-cell px-6 py-4 font-medium ">{item.condition.name}</TableBodyCell>
+				<TableBodyCell tdClass="px-6 py-4 font-medium text-center">{item.category.name}</TableBodyCell>
+				<TableBodyCell tdClass="hidden md:table-cell px-6 py-4 font-medium text-center">{item.condition.name}</TableBodyCell>
 				<TableBodyCell tdClass="hidden md:table-cell px-6 py-4 font-medium ">{item.description}</TableBodyCell>
 				<TableBodyCell class="text-center">
+					<form method="post" action="?/delete" use:enhance>
 					<ButtonGroup>
-						<a href="/app/add/{item.id}" class="">
-							<Button type="submit" class="mr-4" size="xs" outline color="blue" name="id" value={item.id}
-								>Edit</Button
+						
+							<Button type="submit" size="xs" outline color="blue" name="id" value={item.id}>
+								<a href="/app/add/{item.id}" class="">
+									Ubah
+								</a>
+								</Button
 							>
-						</a>
-						<form method="post" action="?/delete" use:enhance>
+						
+						
 							<Button type="submit" size="xs" outline color="red" name="id" value={item.id}
-								>Delete</Button
+								>Hapus</Button
 							>
-						</form>
+						
 					</ButtonGroup>
+					</form>
 				</TableBodyCell>
 			</TableBodyRow>
 		{/each}

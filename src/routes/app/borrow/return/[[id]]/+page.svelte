@@ -15,14 +15,14 @@
 
 </script>
 
-<Heading customSize="text-lg font-extrabold  md:text-xl lg:text-2xl text-center">Return Item</Heading
+<Heading customSize="text-lg font-extrabold  md:text-xl lg:text-2xl text-center">Pengembalian Barang</Heading
 >
 <br />
 <div class="w-1/2 m-auto">
 	<form method="post" use:enhance>
 		<input type="hidden" name="id" bind:value={$form.id} />
 			<div class="relative max-w-sm mb-2">
-				<Label for="date" class="mb-2">Return Date</Label>
+				<Label for="date" class="mb-2">Tanggal Barang Kembali</Label>
 				<div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
 					<svg
 						aria-hidden="true"
@@ -51,6 +51,6 @@
 				{/if}
 			</div>
 			
-		<Button class="mt-6 grid gap-6 m-auto" type="submit">Submit</Button>
+		<Button class="mt-6 grid gap-6 m-auto" type="submit">Kirim</Button>
 	</form>
 </div>

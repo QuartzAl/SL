@@ -6,21 +6,21 @@ import { z } from 'zod';
 
 const schema = z.object({
 	username: z.string({
-		required_error: "Username is required"
+		required_error: "Username wajib diisi"
 	})
-	.min(3, { message: "Username must be more than 3 characters" })
-	.max(50, { message: "Username cannot be more than 50 characters" }),
+	.min(3, { message: "Username harus lebih dari 3 karakter" })
+	.max(50, { message: "Username tidak belok lebih dari 50 karakter" }),
 	password: z.string({
-		required_error: "Password is required"
-	}).min(8, { message: "Password must be more than 8 characters" })
-	.max(100, { message: "Password cannot be more than 100 characters" }),
+		required_error: "Kata sandi wajib diisi"
+	}).min(8, { message: "Kata sandi harus lebih dari 8 karakter" })
+	.max(100, { message: "Kata sandi tidak boleh lebih dari 100 karakter" }),
 	passwordConfirm: z.string({
-		required_error: "Confirm password is required"
-	}).min(8, { message: "Confirm password must be more than 8 characters" })
-	.max(100, { message: "Confirm password cannot be more than 100 characters" }),
+		required_error: "Konfirmasi kata sandi wajib diisi"
+	}).min(8, { message: "Konfirmasi kata sandi harus lebih dari 8 karakter" })
+	.max(100, { message: "Konfirmasi kata sandi tidak boleh lebih dari 100 karakter" }),
 
 	signPassword: z.string({
-		required_error: "Password is required"
+		required_error: "Pin masuk wajib diisi"
 	}),
 	email: z.string().email().optional()
 });
@@ -44,11 +44,11 @@ export const actions: Actions = {
 		}
 
 		if (form.data.password !== form.data.passwordConfirm) {
-			return setError(form, "passwordConfirm", "Passwords do not match");
+			return setError(form, "passwordConfirm", "Kata sandi tidak sama dengan konfirmasi kata sandi");
 		}
 
 		if (form.data.signPassword !== process.env.SIGNUP_PIN) {
-			return setError(form, "signPassword", "Invalid signup pin");
+			return setError(form, "signPassword", "Pin pendaftaran salah");
 		}
 
 		try {
@@ -69,7 +69,7 @@ export const actions: Actions = {
 		} catch (error) {
 			// username taken
 			console.error(error);
-			return setError(form, "username", "Username is taken");
+			return setError(form, "username", "Username telah diambil");
 		}
 		throw redirect(302, "/login");
 	}

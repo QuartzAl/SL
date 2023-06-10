@@ -6,10 +6,10 @@ import { z } from 'zod';
 
 const schema = z.object({
 	username: z.string({
-		required_error: "Username is required"
+		required_error: "Username wajib diisi"
 	}),
 	password: z.string({
-		required_error: "Password is required"
+		required_error: "Kata sandi wajib diisi"
 	})
 });
 
@@ -40,7 +40,7 @@ export const actions: Actions = {
 		} catch (error) {
 			// invalid username/password
 			console.error(error);
-			return setError(form, "username", "Invalid username/password");
+			return setError(form, "username", "username/kata sandi salah");
 		}
 		throw redirect(302, "/");
 	}

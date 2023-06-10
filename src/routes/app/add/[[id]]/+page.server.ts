@@ -6,12 +6,24 @@ import { superValidate } from "sveltekit-superforms/server";
 
 const schema = z.object({
 	id: z.number().min(1).optional(),
-	name: z.string().min(1).max(50),
-	description: z.string().min(1).max(250),
-	amount: z.number().min(1).max(1000000),
-	conditionid: z.number().min(1).max(1000000),
-	categoryid: z.number().min(1).max(1000000),
-	entryDate: z.date(),
+	name: z.string().min(1, {
+		message: "Nama barang wajib diisi"
+	}).max(50),
+	description: z.string().min(1, {
+		message: "Deskripsi barang wajib diisi"
+	}).max(250),
+	amount: z.number().min(1, {
+		message: "Jumlah barang paling tidak terdapat 1"
+	}).max(1000000),
+	conditionid: z.number().min(1, {
+		message: "barang wajib memliki kondisi"
+	}).max(1000000),
+	categoryid: z.number().min(1, {
+		message: "barang wajib memliki kategori"
+	}).max(1000000),
+	entryDate: z.date({
+		required_error: "Tanggal masuk wajib diisi",
+	}),
 });
 
 export const load: PageServerLoad = async ({ locals, params }) => {
@@ -30,7 +42,7 @@ export const load: PageServerLoad = async ({ locals, params }) => {
 		});
 	}
 
-	if(params.id && item === null) {throw error(404, "Item not found");}
+	if(params.id && item === null) {throw error(404, "Barang tidak ditemukan");}
 	else if (item !== null) {item.entryDate = item.entryDate.toISOString().split("T")[0];}
 	
 	const categories = await prisma.category.findMany();

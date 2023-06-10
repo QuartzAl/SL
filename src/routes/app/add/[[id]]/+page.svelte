@@ -11,22 +11,22 @@
 	const { form, errors, enhance } = superForm(data.form);
 </script>
 
-<Heading customSize="text-lg font-extrabold  md:text-xl lg:text-2xl text-center">Add Item</Heading>
+<Heading customSize="text-lg font-extrabold  md:text-xl lg:text-2xl text-center">Tambah Barang</Heading>
 <br />
 
 <div class="w-1/2 m-auto">
 	<form method="post" use:enhance>
 		<input type="hidden" name="id" bind:value={$form.id} />
 		<div>
-			<Label for="name" class="mb-2">Item Name</Label>
+			<Label for="name" class="mb-2">Nama Barang</Label>
 			<Input class="mb-2" type="text" name="name" bind:value={$form.name} />
 			{#if $errors.name}
-				<Helper class="text-red-500">{$errors.name}</Helper>
+				<Helper color="red">{$errors.name}</Helper>
 			{/if}
 		</div>
 		<div class="grid gap-6 mb-2 md:grid-cols-2">
 			<div class="relative max-w-sm mb-2">
-				<Label for="date" class="mb-2">Item enter date</Label>
+				<Label for="date" class="mb-2">Tanggal Masuk</Label>
 				<div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
 					<svg
 						aria-hidden="true"
@@ -49,61 +49,59 @@
 					placeholder="Select date"
 				/>
 				{#if $errors.entryDate}
-					<Helper class="text-red-500">{$errors.entryDate}</Helper>
+					<Helper color="red">{$errors.entryDate}</Helper>
 				{/if}
 			</div>
 
 			<div>
-				<Label for="amount" class="mb-2">Amount</Label>
+				<Label for="amount" class="mb-2">Jumlah</Label>
 				<Input type="number" name="amount" bind:value={$form.amount} />
 				{#if $errors.amount}
-					<Helper class="text-red-500">{$errors.amount}</Helper>
+					<Helper color="red">{$errors.amount}</Helper>
 				{/if}
 			</div>
 			<div>
 				<Label for="category" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-					>Category</Label
+					>Kategori</Label
 				>
 				<select
 					bind:value={$form.categoryid}
 					name="categoryid"
 					class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
 				>
-					<option selected>Select category</option>
 					{#each data.categories as category}
 						<option value={category.id}>{category.name}</option>
 					{/each}
 				</select>
 				{#if $errors.categoryid}
-					<Helper class="text-red-500">{$errors.categoryid}</Helper>
+					<Helper color="red">{$errors.categoryid}</Helper>
 				{/if}
 			</div>
 			<div>
 				<Label for="condition" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-					>Condition</Label
+					>Kondisi</Label
 				>
 				<select
 					bind:value={$form.conditionid}
 					name="conditionid"
 					class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
 				>
-					<option selected>Select condition</option>
 					{#each data.conditions as condition}
 						<option value={condition.id}>{condition.name}</option>
 					{/each}
 				</select>
 				{#if $errors.conditionid}
-					<Helper class="text-red-500">{$errors.conditionid}</Helper>
+					<Helper color="red">{$errors.conditionid}</Helper>
 				{/if}
 			</div>
 		</div>
 		<div>
-			<Label for="description" class="mb-2">Description</Label>
+			<Label for="description" class="mb-2">Deskripsi</Label>
 			<Textarea id="description" rows="4" name="description" bind:value={$form.description} />
 			{#if $errors.description}
-				<Helper class="text-red-500">{$errors.description}</Helper>
+				<Helper color="red">{$errors.description}</Helper>
 			{/if}
 		</div>
-		<Button class="mt-6 grid gap-6 m-auto " type="submit">Submit</Button>
+		<Button class="mt-6 grid gap-6 m-auto " type="submit">Kirim</Button>
 	</form>
 </div>

@@ -6,7 +6,9 @@ import { setError, superValidate } from "sveltekit-superforms/server";
 
 const schema = z.object({
 	id: z.number(),
-    returnDate: z.date()
+    returnDate: z.date({
+		required_error: "Tanggal pengembalian wajib diisi"
+	})
 
 });
 
@@ -25,7 +27,7 @@ export const load: PageServerLoad = async ({ locals, params }) => {
 		});
 	}
 
-	if(params.id && borrow === null) {throw error(404, "borrow item not found");}
+	if(params.id && borrow === null) {throw error(404, "Peminjaman barang tidak ditemukan");}
 	
 	const items = await prisma.item.findMany();
 	const form = await superValidate(borrow, schema);
