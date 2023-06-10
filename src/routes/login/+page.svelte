@@ -18,7 +18,7 @@
 		<br />
 		<div class="mb-6">
 			<label for="Username" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-				>Username</label
+				>Nama Pengguna</label
 			>
 			<Input
 				type="text"

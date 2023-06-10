@@ -15,7 +15,7 @@
 	<form method="post" use:enhance>
 		<p class="text-3xl text-center text-blue-500 font-sans"><b>DAFTAR</b></p>
 		<div class="mb-6">
-			<Label for="username" class="block mb-2">Username</Label>
+			<Label for="username" class="block mb-2">Nama Pengguna</Label>
 			<Input
 				class="block"
 				name="username"
