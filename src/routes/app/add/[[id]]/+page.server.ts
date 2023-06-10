@@ -9,9 +9,7 @@ const schema = z.object({
 	name: z.string().min(1, {
 		message: "Nama barang wajib diisi"
 	}).max(50),
-	description: z.string().min(1, {
-		message: "Deskripsi barang wajib diisi"
-	}).max(250),
+	description: z.string().max(250),
 	amount: z.number().min(1, {
 		message: "Jumlah barang paling tidak terdapat 1"
 	}).max(1000000),
