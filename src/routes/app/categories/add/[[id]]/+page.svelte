@@ -15,7 +15,7 @@
 	>Tambah Kategori</Heading
 >
 <br />
-<SuperDebug data={$form} />
+
 <form method="post" use:enhance>
 	<input type="hidden" name="id" bind:value={$form.id} />
 	<div class="w-1/2 m-auto space-y-3">
