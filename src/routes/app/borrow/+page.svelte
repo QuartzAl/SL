@@ -205,6 +205,7 @@
 						<ButtonGroup>
 							{#if borrow.returnDate == null}
 								<Button
+									class="mt-4"
 									size="xs"
 									outline
 									color="blue"
@@ -215,7 +216,7 @@
 									Ubah
 								</Button>
 
-								<Button size="xs" outline color="blue" name="id" value={borrow.id}>
+								<Button class="mt-4" size="xs" outline color="blue" name="id" value={borrow.id}>
 									<a href="/app/borrow/return/{borrow.id}" class=""> Kembalikan </a>
 								</Button>
 							{/if}
