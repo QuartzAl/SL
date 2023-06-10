@@ -31,7 +31,6 @@
 	let sortItems: item[] = [];
 	$: {
 		sortItems = [...filteredItems];
-		console.log(filteredItems);
 	}
 
 	interface item {
@@ -67,7 +66,6 @@
 	};
 
 	$: if (sortKey !== null) {
-		console.log(sortKey);
 		if (sortKey == 'category') {
 			sortItems = filteredItems.sort((a: item, b: item) => {
 				if (a.category.name < b.category.name) {
@@ -117,22 +115,20 @@
 	}
 </script>
 
-<a href="/app/add">
-	<Button class="my-6">
-		<svg
-			xmlns="http://www.w3.org/2000/svg"
-			fill="none"
-			viewBox="0 0 24 24"
-			stroke-width="1.5"
-			stroke="currentColor"
-			class="w-6 h-6"
-		>
-			<path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
-		</svg>
+<Button class="my-6" href="/app/add">
+	<svg
+		xmlns="http://www.w3.org/2000/svg"
+		fill="none"
+		viewBox="0 0 24 24"
+		stroke-width="1.5"
+		stroke="currentColor"
+		class="w-6 h-6"
+	>
+		<path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+	</svg>
 
-		Tambah Barang
-	</Button>
-</a>
+	Tambah Barang
+</Button>
 <TableSearch
 	class="table-auto"
 	placeholder="Cari berdasarkan nama barang"
@@ -200,8 +196,15 @@
 				<TableBodyCell class="text-center">
 					<form method="post" action="?/delete" use:enhance>
 						<ButtonGroup>
-							<Button type="submit" size="xs" outline color="blue" name="id" value={item.id}>
-								<a href="/app/add/{item.id}" class=""> Ubah </a>
+							<Button
+								size="xs"
+								outline
+								color="blue"
+								name="id"
+								value={item.id}
+								href="/app/add/{item.id}"
+							>
+								Ubah
 							</Button>
 
 							<Button type="submit" size="xs" outline color="red" name="id" value={item.id}

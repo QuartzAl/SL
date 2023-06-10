@@ -204,11 +204,18 @@
 					<form method="post" action="?/delete" use:enhance>
 						<ButtonGroup>
 							{#if borrow.returnDate == null}
-								<Button class="mt-4" size="xs" outline color="blue" name="id" value={borrow.id}>
-									<a href="/app/borrow/add/{borrow.id}" class=""> Ubah </a>
+								<Button
+									size="xs"
+									outline
+									color="blue"
+									name="id"
+									value={borrow.id}
+									href="/app/borrow/add/{borrow.id}"
+								>
+									Ubah
 								</Button>
 
-								<Button class="mt-4" size="xs" outline color="blue" name="id" value={borrow.id}>
+								<Button size="xs" outline color="blue" name="id" value={borrow.id}>
 									<a href="/app/borrow/return/{borrow.id}" class=""> Kembalikan </a>
 								</Button>
 							{/if}
