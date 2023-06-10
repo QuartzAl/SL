@@ -88,9 +88,13 @@ export const actions: Actions = {
 			return setError(form, "amount", "Jumlah barang yang dipinjam lebih banyak daripada jumlah barang tersedia untuk barang:"+ item.name + " dengan jumlah tersedia: " + itemAvailable);
 		}
 		
+		
 
 
 		if (form.data.id !== undefined) {
+			if (form.data.borrowerEmail == undefined) {
+				form.data.borrowerEmail = null;
+			}
 			await prisma.borrow.update({
 				where: {
 					id: form.data.id

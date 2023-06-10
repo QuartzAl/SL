@@ -11,7 +11,7 @@
 	const { form, errors, enhance } = superForm(data.form);
 	// get day + 1 day and store in variable
 	const today = new Date();
-	today.setDate(today.getDate() + 1);
+	errors.clear();
 </script>
 
 <Heading customSize="text-lg font-extrabold  md:text-xl lg:text-2xl text-center">Pengembalian Barang</Heading
