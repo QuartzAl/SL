@@ -63,8 +63,8 @@
 					<TableBodyCell class="text-center">
 						<ButtonGroup>
 						<form method="post" use:enhance>
-								<Button size="xs" outline color="blue" href="/app/categories/add/{category.id}">Ubah</Button>
-								<Button
+								<Button size="xs" outline color="blue" href="/app/categories/add/{category.id}">Ubah</Button
+									><Button
 									type="submit"
 									size="xs"
 									outline

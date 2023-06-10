@@ -3,7 +3,6 @@
 	import type { PageData } from './$types';
 	import { superForm } from 'sveltekit-superforms/client';
 	import { Input, Label, Textarea, Button, Helper, Heading } from 'flowbite-svelte';
-	import SuperDebug from 'sveltekit-superforms/client/SuperDebug.svelte';
 
 	export let data: PageData;
 
@@ -15,7 +14,6 @@
 	>Tambah Kategori</Heading
 >
 <br />
-
 <form method="post" use:enhance>
 	<input type="hidden" name="id" bind:value={$form.id} />
 	<div class="w-1/2 m-auto space-y-3">
