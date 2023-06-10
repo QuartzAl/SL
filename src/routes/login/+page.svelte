@@ -118,7 +118,7 @@
 		>
 		<br /><br />
 		<p class="text-center">
-			User baru? <a class="font-medium hover:underline text-blue-700" href="/signup">DAFTAR</a>
+			Pengguna baru? <a class="font-medium hover:underline text-blue-700" href="/signup">DAFTAR</a>
 		</p>
 	</form>
 </div>
