@@ -103,18 +103,17 @@
 		sortItems = filteredItems;
 	}
 
-	function getBorrowed(id: Number){
+	function getBorrowed(id: Number) {
 		let amountBorrowed = 0;
 		data.items.forEach((item: item) => {
-			if(item.id == id){
+			if (item.id == id) {
 				let temp = data.borrowedItems.filter((Itemsum: itemSum) => Itemsum.itemId == item.id);
-				if (temp.length > 0){
+				if (temp.length > 0) {
 					amountBorrowed = temp[0]._sum.amount;
 				}
 			}
 		});
 		return amountBorrowed;
-		
 	}
 </script>
 
@@ -135,49 +134,76 @@
 	</Button>
 </a>
 <TableSearch
-	class="table-fixed"
+	class="table-auto"
 	placeholder="Cari berdasarkan nama barang"
 	hoverable={true}
 	bind:inputValue={searchTerm}
 >
 	<TableHead>
-		<TableHeadCell class="hidden md:table-cell cursor-pointer" on:click={() => sortTable('entryDate')}>Tanggal masuk</TableHeadCell>
-		<TableHeadCell padding="px-3 py-3 " class="text-center cursor-pointer" on:click={() => sortTable('name')}>Nama</TableHeadCell>
-		<TableHeadCell padding="py-3" class="text-center cursor-pointer" on:click={() => sortTable('amount')}>Jumlah total</TableHeadCell>
-		<TableHeadCell padding="py-3" class="text-center cursor-pointer" on:click={() => sortTable('amount')}>Jumlah tersedia</TableHeadCell>
-		<TableHeadCell class="text-center cursor-pointer" on:click={() => sortTable('category')}>kategori</TableHeadCell>
-		<TableHeadCell class="hidden md:table-cell cursor-pointer text-center" on:click={() => sortTable('condition')}>kondisi</TableHeadCell>
-		<TableHeadCell class="hidden md:table-cell cursor-pointer" on:click={() => sortTable('description')}>deskripsi</TableHeadCell>
+		<TableHeadCell
+			class="hidden md:table-cell cursor-pointer"
+			on:click={() => sortTable('entryDate')}>Tanggal masuk</TableHeadCell
+		>
+		<TableHeadCell
+			padding="px-3 py-3 "
+			class="text-center cursor-pointer"
+			on:click={() => sortTable('name')}>Nama</TableHeadCell
+		>
+		<TableHeadCell
+			padding="py-3"
+			class="text-center cursor-pointer"
+			on:click={() => sortTable('amount')}>Jumlah total</TableHeadCell
+		>
+		<TableHeadCell
+			padding="py-3"
+			class="text-center cursor-pointer"
+			on:click={() => sortTable('amount')}>Jumlah tersedia</TableHeadCell
+		>
+		<TableHeadCell class="text-center cursor-pointer" on:click={() => sortTable('category')}
+			>kategori</TableHeadCell
+		>
+		<TableHeadCell
+			class="hidden md:table-cell cursor-pointer text-center"
+			on:click={() => sortTable('condition')}>kondisi</TableHeadCell
+		>
+		<TableHeadCell
+			class="hidden md:table-cell cursor-pointer"
+			on:click={() => sortTable('description')}>deskripsi</TableHeadCell
+		>
 
 		<TableHeadCell class="text-center">Tindakan</TableHeadCell>
 	</TableHead>
 	<TableBody>
 		{#each sortItems as item}
 			<TableBodyRow>
-				<TableBodyCell tdClass="hidden md:table-cell px-6 py-4 font-medium ">{item.entryDate.toDateString()}</TableBodyCell>
+				<TableBodyCell tdClass="hidden md:table-cell px-6 py-4 font-medium "
+					>{item.entryDate.toDateString()}</TableBodyCell
+				>
 				<TableBodyCell tdClass="px-3 py-4 font-medium text-center">{item.name}</TableBodyCell>
 				<TableBodyCell tdClass="py-4" class="text-center px-3">{item.amount}</TableBodyCell>
-				<TableBodyCell tdClass="py-4" class="text-center px-3">{item.amount - getBorrowed(item.id)}</TableBodyCell>
-				<TableBodyCell tdClass="px-6 py-4 font-medium text-center">{item.category.name}</TableBodyCell>
-				<TableBodyCell tdClass="hidden md:table-cell px-6 py-4 font-medium text-center">{item.condition.name}</TableBodyCell>
-				<TableBodyCell tdClass="hidden md:table-cell px-6 py-4 font-medium ">{item.description}</TableBodyCell>
+				<TableBodyCell tdClass="py-4" class="text-center px-3"
+					>{item.amount - getBorrowed(item.id)}</TableBodyCell
+				>
+				<TableBodyCell tdClass="px-6 py-4 font-medium text-center"
+					>{item.category.name}</TableBodyCell
+				>
+				<TableBodyCell tdClass="hidden md:table-cell px-6 py-4 font-medium text-center"
+					>{item.condition.name}</TableBodyCell
+				>
+				<TableBodyCell tdClass="hidden md:table-cell px-6 py-4 font-medium "
+					>{item.description}</TableBodyCell
+				>
 				<TableBodyCell class="text-center">
 					<form method="post" action="?/delete" use:enhance>
-					<ButtonGroup>
-						
+						<ButtonGroup>
 							<Button type="submit" size="xs" outline color="blue" name="id" value={item.id}>
-								<a href="/app/add/{item.id}" class="">
-									Ubah
-								</a>
-								</Button
-							>
-						
-						
+								<a href="/app/add/{item.id}" class=""> Ubah </a>
+							</Button>
+
 							<Button type="submit" size="xs" outline color="red" name="id" value={item.id}
 								>Hapus</Button
 							>
-						
-					</ButtonGroup>
+						</ButtonGroup>
 					</form>
 				</TableBodyCell>
 			</TableBodyRow>

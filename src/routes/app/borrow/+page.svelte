@@ -125,7 +125,7 @@
 </a>
 <Toggle on:change={toggleReturn}>Tampilkan Barang yang telah dikembalikan</Toggle>
 <TableSearch
-	class="table-fixed"
+	class="table-auto"
 	placeholder="Cari berdasarkan peminjam atau barang"
 	hoverable={true}
 	bind:inputValue={searchTerm}
@@ -197,24 +197,31 @@
 					</TableBodyCell>
 				{/if}
 
-				<TableBodyCell class="text-center" tdClass="py-4 font-medium text-center">
+				<TableBodyCell
+					class="text-center flex justify-center"
+					tdClass="py-4 font-medium text-center"
+				>
 					<form method="post" action="?/delete" use:enhance>
 						<ButtonGroup>
 							{#if borrow.returnDate == null}
-								<Button size="xs" outline color="blue" name="id" value={borrow.id}>
+								<Button class="mt-4" size="xs" outline color="blue" name="id" value={borrow.id}>
 									<a href="/app/borrow/add/{borrow.id}" class=""> Ubah </a>
 								</Button>
 
-								<Button size="xs" outline color="blue" name="id" value={borrow.id}>
+								<Button class="mt-4" size="xs" outline color="blue" name="id" value={borrow.id}>
 									<a href="/app/borrow/return/{borrow.id}" class=""> Kembalikan </a>
 								</Button>
 							{/if}
-
-							
-						</ButtonGroup>
-						<Button type="submit" class="mt-4" size="xs" outline color="red" name="id" value={borrow.id}
-								>Hapus</Button
+							<Button
+								type="submit"
+								class="mt-4"
+								size="xs"
+								outline
+								color="red"
+								name="id"
+								value={borrow.id}>Hapus</Button
 							>
+						</ButtonGroup>
 					</form>
 				</TableBodyCell>
 			</TableBodyRow>
