@@ -1,38 +1,54 @@
-# create-svelte
+<!-- Improved compatibility of back to top link: See: https://github.com/othneildrew/Best-README-Template/pull/73 -->
+<a name="readme-top"></a>
+<!--
+*** Thanks for checking out the Best-README-Template. If you have a suggestion
+*** that would make this better, please fork the repo and create a pull request
+*** or simply open an issue with the tag "enhancement".
+*** Don't forget to give the project a star!
+*** Thanks again! Now go create something AMAZING! :D
+-->
 
-Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/master/packages/create-svelte).
+<!-- PROJECT LOGO -->
+<br />
+<div align="center">
 
-## Creating a project
+<h3 align="center">Inventory System</h3>
 
-If you're seeing this, you've probably already done this step. Congrats!
+  <p align="center">
+    A simple inventory system made with sveltekit
+    <br />
+</div>
 
-```bash
-# create a new project in the current directory
-npm create svelte@latest
+<!-- TABLE OF CONTENTS -->
+<details>
+  <summary>Table of Contents</summary>
+  <ol>
+    <li>
+      <a href="#about-the-project">About The Project</a>
+      <ul>
+        <li><a href="#built-with">Built With</a></li>
+      </ul>
+    </li>
+  </ol>
+</details>
 
-# create a new project in my-app
-npm create svelte@latest my-app
-```
+<!-- ABOUT THE PROJECT -->
+## About The Project
+A simpleproject made for a church who was in need of software managing their inventory as they were growing too large with too much to hande manually. the project was made on top of the sveltekit framework with using postgresql database and many other tools to help with the development of the website, such as: lucia-auth, prisma ORM, zodd, tailwind, and flowbite
+below is an example of the finished site, in the borrow menu
+[![Product Name Screen Shot][product-screenshot]](https://example.com)
 
-## Developing
+### Built With
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+[![Svelte][Svelte.dev]][Svelte-url]
 
-```bash
-npm run dev
+<!-- ACKNOWLEDGMENTS -->
+## Acknowledgments
 
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
-```
+* [Cassiejc](https://github.com/cassiejc)
 
-## Building
-
-To create a production version of your app:
-
-```bash
-npm run build
-```
-
-You can preview the production build with `npm run preview`.
-
-> To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
+<!-- MARKDOWN LINKS & IMAGES -->
+<!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
+[product-screenshot]: images/example.png
+[Svelte.dev]: https://img.shields.io/badge/Svelte-4A4A55?style=for-the-badge&logo=svelte&logoColor=FF3E00
+[Svelte-url]: https://svelte.dev/
