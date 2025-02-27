@@ -34,7 +34,7 @@
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project
-A simpleproject made for a church who was in need of software managing their inventory as they were growing too large with too much to hande manually. the project was made on top of the sveltekit framework with using postgresql database and many other tools to help with the development of the website, such as: lucia-auth, prisma ORM, zodd, tailwind, and flowbite
+A simpleproject made for a church who was in need of software managing their inventory as they were growing too large with too much to hande manually. the project was made on top of the sveltekit framework with using postgresql database and many other tools to help with the development of the website, such as: lucia-auth, prisma ORM, zod validation, tailwind, and flowbite
 below is an example of the finished site, in the borrow menu
 [![Product Name Screen Shot][product-screenshot]](https://example.com)
 
